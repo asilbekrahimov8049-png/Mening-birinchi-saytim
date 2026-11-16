@@ -2,14 +2,14 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zamonaviy, chiroyli va barcha qurilmalarga mos veb-sayt shabloni">
-    <title>Mening Zamonaviy Veb-saytim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Asilbek — Zamonaviy Frontend Dasturchi Portfoliosi. Barcha ekranlarga 100% moslashuvchan, animatsiyali va interaktiv veb-sayt.">
+    <title>Asilbek | Frontend Dasturchi</title>
 
-    <!-- Google Fonts (Inter shrifti) -->
+    <!-- Google Fonts (Inter & Outfit shriftlari) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome Ikonkalari -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -19,15 +19,19 @@
 </head>
 <body>
 
+    <!-- Fon uchun zamonaviy yorug'lik nurlari (Glow/Blur effekti) -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
     <!-- ============================================ -->
-    <!-- 1. HEADER & NAVIGATSIYA BO'LIMI             -->
+    <!-- 1. HEADER & NAVIGATSIYA                      -->
     <!-- ============================================ -->
     <header class="header" id="header">
         <div class="container nav-container">
             <!-- Sayt logotipi -->
             <a href="#hero" class="logo">
                 <span class="logo-icon"><i class="fa-solid fa-code"></i></span>
-                <span class="logo-text">Dev<span>Portfolio</span></span>
+                <span class="logo-text">Asilbek<span>.dev</span></span>
             </a>
 
             <!-- Asosiy menyu havolalari -->
@@ -41,16 +45,18 @@
                 </ul>
             </nav>
 
-            <!-- O'ng tarafdagi qo'shimcha tugmalar (Mavzu almashtirish va Mobil menyu) -->
+            <!-- O'ng tarafdagi qo'shimcha tugmalar -->
             <div class="nav-actions">
-                <!-- Tun / Kun (Dark/Light mode) tugmasi -->
-                <button class="theme-toggle" id="theme-toggle" aria-label="Mavzuni o'zgartirish">
+                <!-- Tun / Kun rejimi tugmasi -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Mavzuni o'zgartirish" title="Tun/Kun rejimi">
                     <i class="fa-solid fa-moon" id="theme-icon"></i>
                 </button>
 
                 <!-- Mobil qurilmalar uchun Gamburger menyu tugmasi -->
                 <button class="menu-toggle" id="menu-toggle" aria-label="Menyuni ochish">
-                    <i class="fa-solid fa-bars" id="menu-icon"></i>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
@@ -65,14 +71,20 @@
                 <div class="hero-content">
                     <div class="badge">
                         <span class="badge-dot"></span>
-                        Kelajak dasturchisi
+                        <span class="badge-text">100% Moslashuvchan & Tezkor</span>
                     </div>
+
                     <h1 class="hero-title">
-                        Salom, men <span class="gradient-text">Frontend Dasturchiman</span>
+                        Salom, men <br class="mobile-break">
+                        <span class="typewriter-wrapper">
+                            <span class="gradient-text" id="typewriter"></span><span class="cursor">|</span>
+                        </span>
                     </h1>
+
                     <p class="hero-description">
-                        HTML, CSS va JavaScript yordamida zamonaviy, qulay va barcha ekranlarga (telefon, planshet, kompyuter) mos veb-sahifalar yarataman. Kod yozish — mening sevimli mashg'ulotim!
+                        HTML, CSS va JavaScript yordamida har qanday smartfon, planshet va kompyuter ekraniga mukammal moslashuvchi zamonaviy, animatsiyali va interaktiv veb-saytlar yarataman.
                     </p>
+
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">
                             <span>Loyihalarim</span>
@@ -83,75 +95,140 @@
                             <i class="fa-regular fa-paper-plane"></i>
                         </a>
                     </div>
+
+                    <!-- Kichik tezkor ko'rsatkichlar -->
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span>Barcha ekranlarga mos</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Zamonaviy animatsiyalar</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fa-brands fa-telegram"></i>
+                            <span>Telegramga ulangan</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Qahramon rasmi / Vizual qismi -->
+                <!-- Qahramon vizual qismi (Interaktiv kod kartochkasi) -->
                 <div class="hero-visual">
                     <div class="code-card">
                         <div class="code-header">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                            <span class="file-name">developer.js</span>
+                            <div class="dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="file-name"><i class="fa-brands fa-js"></i> developer.js</span>
+                            <span class="code-badge">Live</span>
                         </div>
                         <pre class="code-body"><code><span class="code-keyword">const</span> developer = {
-  name: <span class="code-string">"Boshlovchi Dasturchi"</span>,
-  skills: [<span class="code-string">"HTML"</span>, <span class="code-string">"CSS"</span>, <span class="code-string">"JS"</span>],
-  passion: <span class="code-string">"Zamonaviy veb-saytlar"</span>,
-  status: <span class="code-string">"O'rganishda davom etmoqda 🚀"</span>
+  name: <span class="code-string">"Asilbek"</span>,
+  role: <span class="code-string">"Frontend Dasturchi"</span>,
+  skills: [<span class="code-string">"HTML5"</span>, <span class="code-string">"CSS3/Grid"</span>, <span class="code-string">"JS"</span>],
+  responsive: <span class="code-boolean">true</span>,
+  animations: <span class="code-string">"CSS & JS ✨"</span>,
+  telegramConnected: <span class="code-boolean">true</span>
 };</code></pre>
+                        <div class="card-glow"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ============================================ -->
-        <!-- 3. MEN HAQIMDA (ABOUT) BO'LIMI              -->
+        <!-- 3. STATISTIKA BO'LIMI (INTERAKTIV HISOB-KITOBLAR) -->
+        <!-- ============================================ -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <h3 class="stat-number" data-target="12">0</h3>
+                        <p class="stat-label">Yakunlangan Loyihalar</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <h3 class="stat-number" data-target="100">0</h3>
+                        <p class="stat-label">% Moslashuvchanlik</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 class="stat-number" data-target="99">0</h3>
+                        <p class="stat-label">% Tezkor Ishlash</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                        <h3 class="stat-number" data-target="24">0</h3>
+                        <p class="stat-label">/7 Serverda Jonli</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 4. MEN HAQIMDA (ABOUT) BO'LIMI              -->
         <!-- ============================================ -->
         <section class="about section" id="about">
             <div class="container">
                 <div class="section-header">
+                    <span class="section-tag">Afzalliklarim</span>
                     <h2 class="section-title">Men Haqimda</h2>
-                    <p class="section-subtitle">Dasturlash olamidagi dastlabki qadamlarim va maqsadlarim</p>
+                    <p class="section-subtitle">Nima uchun veb-saytlarim sifatli va foydalanuvchilar uchun qulay?</p>
                 </div>
 
                 <div class="about-grid">
                     <div class="about-card">
                         <div class="about-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                        <h3>Toza va Sifatli Kod</h3>
-                        <p>Har bir kod qatorini tushunarli, tartibli va qoidalarga amal qilgan holda yozishga intilaman.</p>
+                        <h3>Toza va Semantik Kod</h3>
+                        <p>Har bir kod qatorini W3C standartlariga mos, toza va boshqa dasturchilar tushunishi oson qilib yozaman.</p>
+                    </div>
+
+                    <div class="about-card highlight-card">
+                        <div class="about-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <h3>100% Ekranlarga Mos (Responsive)</h3>
+                        <p>Sayt eng kichik iPhone SE ekranidan tortib, eng katta 4K monitorlargacha sinchkovlik bilan moslashtiriladi.</p>
                     </div>
 
                     <div class="about-card">
-                        <div class="about-icon"><i class="fa-solid fa-mobile-screen"></i></div>
-                        <h3>Moslashuvchan (Responsive)</h3>
-                        <p>Yaratgan veb-saytlarim smartfonlar, planshetlar va katta monitorlarda birdek chiroyli ko'rinadi.</p>
-                    </div>
-
-                    <div class="about-card">
-                        <div class="about-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <h3>Tezkor va Interaktiv</h3>
-                        <p>JavaScript orqali foydalanuvchilar uchun qulay, jonli va qiziqarli imkoniyatlar yarataman.</p>
+                        <div class="about-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3>Murakkab CSS & JS Animatsiyalar</h3>
+                        <p>Foydalanuvchini jalb etuvchi silliq o‘tishlar, typing effekti, interaktiv elementlar va mikro-animatsiyalar.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ============================================ -->
-        <!-- 4. KO'NIKMALAR (SKILLS) BO'LIMI             -->
+        <!-- 5. KO'NIKMALAR (SKILLS) BO'LIMI             -->
         <!-- ============================================ -->
         <section class="skills section" id="skills">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Texnologiyalar</h2>
-                    <p class="section-subtitle">Hozirda foydalanayotgan va o'rganayotgan texnologiyalarim</p>
+                    <span class="section-tag">Texnologiyalar</span>
+                    <h2 class="section-title">Bilim va Ko'nikmalarim</h2>
+                    <p class="section-subtitle">Zamonaviy veb-ishlanmalar yaratishda foydalanadigan vositalarim</p>
                 </div>
 
                 <div class="skills-grid">
                     <!-- HTML5 -->
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name"><i class="fa-brands fa-html5 skill-icon html-color"></i> HTML5</span>
+                            <span class="skill-name"><i class="fa-brands fa-html5 skill-icon html-color"></i> HTML5 (Semantik)</span>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- CSS3 / Flexbox / Grid -->
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name"><i class="fa-brands fa-css3-alt skill-icon css-color"></i> CSS3 / Flexbox / Grid</span>
                             <span class="skill-percent">90%</span>
                         </div>
                         <div class="progress-bar">
@@ -159,10 +236,10 @@
                         </div>
                     </div>
 
-                    <!-- CSS3 -->
+                    <!-- JavaScript ES6+ -->
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name"><i class="fa-brands fa-css3-alt skill-icon css-color"></i> CSS3 / Flexbox / Grid</span>
+                            <span class="skill-name"><i class="fa-brands fa-js skill-icon js-color"></i> JavaScript (ES6+ / DOM / API)</span>
                             <span class="skill-percent">80%</span>
                         </div>
                         <div class="progress-bar">
@@ -170,21 +247,32 @@
                         </div>
                     </div>
 
-                    <!-- JavaScript -->
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name"><i class="fa-brands fa-js skill-icon js-color"></i> JavaScript (ES6+)</span>
-                            <span class="skill-percent">70%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 70%;"></div>
-                        </div>
-                    </div>
-
                     <!-- Responsive Design -->
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span class="skill-name"><i class="fa-solid fa-arrows-split-up-and-left skill-icon resp-color"></i> Responsive Dizayn</span>
+                            <span class="skill-name"><i class="fa-solid fa-arrows-split-up-and-left skill-icon resp-color"></i> Responsive / Mobile-First</span>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Git & GitHub -->
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name"><i class="fa-brands fa-github skill-icon git-color"></i> Git / GitHub / Vercel Deploy</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Animations & UI -->
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name"><i class="fa-solid fa-palette skill-icon ui-color"></i> UI/UX Dizayn & Animatsiyalar</span>
                             <span class="skill-percent">85%</span>
                         </div>
                         <div class="progress-bar">
@@ -196,78 +284,95 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- 5. LOYIHALAR (PROJECTS) BO'LIMI             -->
+        <!-- 6. LOYIHALAR (PROJECTS & FILTER) BO'LIMI     -->
         <!-- ============================================ -->
         <section class="projects section" id="projects">
             <div class="container">
                 <div class="section-header">
+                    <span class="section-tag">Portfolio</span>
                     <h2 class="section-title">Mening Loyihalarim</h2>
-                    <p class="section-subtitle">Amaliyot davomida yaratilgan dastlabki ishlarim</p>
+                    <p class="section-subtitle">Filtr yordamida loyihalarni toifalar bo‘yicha ko‘rishingiz mumkin</p>
+                </div>
+
+                <!-- Interaktiv filter tugmalari -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">Barchasi</button>
+                    <button class="filter-btn" data-filter="web">Veb-saytlar</button>
+                    <button class="filter-btn" data-filter="app">Veb-ilovalar</button>
                 </div>
 
                 <div class="projects-grid">
                     <!-- 1-loyiha -->
-                    <article class="project-card">
+                    <article class="project-card" data-category="app">
                         <div class="project-image-box project-gradient-1">
                             <i class="fa-solid fa-cart-shopping project-placeholder-icon"></i>
+                            <div class="project-overlay">
+                                <span class="view-btn"><i class="fa-solid fa-eye"></i> Ko'rish</span>
+                            </div>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">CSS</span>
+                                <span class="tag">HTML5</span>
+                                <span class="tag">CSS Grid</span>
                                 <span class="tag">JavaScript</span>
                             </div>
-                            <h3 class="project-title">Mini Onlayn Do'kon</h3>
+                            <h3 class="project-title">Mini E-Commerce Do'kon</h3>
                             <p class="project-description">
-                                Mahsulotlarni savatchaga qo'shish, o'chirish va umumiy narxni hisoblash funksiyasiga ega veb-sahifa.
+                                Mahsulotlarni qidirish, savatchaga qo'shish, o'chirish va umumiy narxni hisoblovchi to'liq interaktiv do'kon.
                             </p>
                             <div class="project-links">
-                                <a href="#projects" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ko'rish</a>
-                                <a href="#projects" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="#projects" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Jonli demo</a>
+                                <a href="https://github.com" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Kod</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- 2-loyiha -->
-                    <article class="project-card">
+                    <article class="project-card" data-category="app">
                         <div class="project-image-box project-gradient-2">
                             <i class="fa-solid fa-cloud-sun project-placeholder-icon"></i>
+                            <div class="project-overlay">
+                                <span class="view-btn"><i class="fa-solid fa-eye"></i> Ko'rish</span>
+                            </div>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
+                                <span class="tag">Fetch API</span>
                                 <span class="tag">JavaScript</span>
-                                <span class="tag">API</span>
-                                <span class="tag">CSS</span>
+                                <span class="tag">Responsive</span>
                             </div>
-                            <h3 class="project-title">Ob-Havo Ilovasi</h3>
+                            <h3 class="project-title">Jonli Ob-Havo Ilovasi</h3>
                             <p class="project-description">
-                                Shaharlar bo'yicha real vaqtdagi ob-havo ma'lumotlarini qidirish va ko'rsatuvchi interaktiv veb-ilova.
+                                Ochiq API orqali dunyo shaharlarining real vaqtdagi ob-havosi, harorati va shamol tezligini ko'rsatadi.
                             </p>
                             <div class="project-links">
-                                <a href="#projects" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ko'rish</a>
-                                <a href="#projects" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="#projects" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Jonli demo</a>
+                                <a href="https://github.com" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Kod</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- 3-loyiha -->
-                    <article class="project-card">
+                    <article class="project-card" data-category="web">
                         <div class="project-image-box project-gradient-3">
                             <i class="fa-solid fa-list-check project-placeholder-icon"></i>
+                            <div class="project-overlay">
+                                <span class="view-btn"><i class="fa-solid fa-eye"></i> Ko'rish</span>
+                            </div>
                         </div>
                         <div class="project-content">
                             <div class="project-tags">
-                                <span class="tag">HTML5</span>
                                 <span class="tag">LocalStorage</span>
-                                <span class="tag">CSS</span>
+                                <span class="tag">Dark Mode</span>
+                                <span class="tag">Interaktiv</span>
                             </div>
-                            <h3 class="project-title">Vazifalar Rejasi (To-Do)</h3>
+                            <h3 class="project-title">Vazifalar Rejasi (To-Do App)</h3>
                             <p class="project-description">
-                                Kunlik ishlarni kiritish, bajarilgan deb belgilash va brauzer xotirasida saqlab qolish imkoniyati.
+                                Kundalik ishlarni kiritish, saralash va brauzer xotirasida doimiy saqlab qolish imkoniyati mavjud.
                             </p>
                             <div class="project-links">
-                                <a href="#projects" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ko'rish</a>
-                                <a href="#projects" class="project-link"><i class="fa-brands fa-github"></i> GitHub</a>
+                                <a href="#projects" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Jonli demo</a>
+                                <a href="https://github.com" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Kod</a>
                             </div>
                         </div>
                     </article>
@@ -276,63 +381,70 @@
         </section>
 
         <!-- ============================================ -->
-        <!-- 6. BOG'LANISH (CONTACT) BO'LIMI             -->
+        <!-- 7. BOG'LANISH (CONTACT & TELEGRAM) BO'LIMI   -->
         <!-- ============================================ -->
         <section class="contact section" id="contact">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Bog'lanish</h2>
-                    <p class="section-subtitle">Savollaringiz bormi yoki loyiha taklif qilmoqchimisiz? Xabar qoldiring!</p>
+                    <span class="section-tag">Aloqa</span>
+                    <h2 class="section-title">Men Bilan Bog'laning</h2>
+                    <p class="section-subtitle">Xabar yuborsangiz, to'g'ridan-to'g'ri Telegramimga keladi!</p>
                 </div>
 
                 <div class="contact-wrapper">
                     <!-- Aloqa ma'lumotlari -->
                     <div class="contact-info">
-                        <h3>Keling, birga ishlaymiz!</h3>
-                        <p>Yangi takliflar, loyihalar va maslahatlar uchun doimo ochiqman.</p>
+                        <h3>Keling, loyihangizni birga quramiz!</h3>
+                        <p>Har qanday savol, loyiha buyurtmasi yoki hamkorlik uchun ochiqman.</p>
 
                         <div class="info-items">
-                            <div class="info-item">
-                                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-                                <div>
-                                    <span class="info-label">Email:</span>
-                                    <span class="info-value">developer@example.com</span>
-                                </div>
-                            </div>
                             <div class="info-item">
                                 <div class="info-icon"><i class="fa-brands fa-telegram"></i></div>
                                 <div>
                                     <span class="info-label">Telegram:</span>
-                                    <span class="info-value">@developer_uz</span>
+                                    <a href="https://t.me/asilbek_portfolio_bot" target="_blank" class="info-value">@asilbek_portfolio_bot</a>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div>
+                                    <span class="info-label">Email:</span>
+                                    <span class="info-value">asilbek@example.com</span>
                                 </div>
                             </div>
                             <div class="info-item">
                                 <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
                                 <div>
                                     <span class="info-label">Manzil:</span>
-                                    <span class="info-value">Toshkent, O'zbekiston</span>
+                                    <span class="info-value">O'zbekiston, Toshkent</span>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Telegram xabar holati burchagi -->
+                        <div class="tg-status-box">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Forma Telegram Botga to'liq ulangan</span>
                         </div>
                     </div>
 
                     <!-- Aloqa formasi -->
                     <form class="contact-form" id="contact-form">
                         <div class="form-group">
-                            <label for="name">Ismingiz</label>
-                            <input type="text" id="name" name="name" placeholder="Masalan: Aziz" required>
+                            <label for="name">Ismingiz *</label>
+                            <input type="text" id="name" name="name" placeholder="Masalan: Sardor" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email manzilingiz</label>
-                            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                            <label for="email">Email yoki Telefon raqamingiz *</label>
+                            <input type="text" id="email" name="email" placeholder="example@mail.com yoki +998..." required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Xabaringiz</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Xabaringizni bu yerga yozing..." required></textarea>
+                            <label for="message">Xabaringiz *</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Sayt buyurtmasi yoki savolingizni yozing..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
-                            <span>Xabarni yuborish</span>
-                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Telegramga yuborish</span>
+                            <i class="fa-paper-plane fa-solid"></i>
                         </button>
                     </form>
                 </div>
@@ -346,22 +458,27 @@
             <i class="fa-solid fa-circle-check toast-icon"></i>
             <div class="toast-message">
                 <span class="toast-title">Muvaffaqiyatli!</span>
-                <span class="toast-desc">Xabaringiz qabul qilindi. Tez orada javob beraman.</span>
+                <span class="toast-desc">Xabaringiz Telegramga yuborildi. Tez orada javob beraman.</span>
             </div>
         </div>
     </div>
 
+    <!-- Yuqoriga chiqish (Back to top) tugmasi -->
+    <button class="back-to-top" id="back-to-top" aria-label="Yuqoriga qaytish">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <!-- ============================================ -->
-    <!-- 7. FOOTER (QUYI QISM)                       -->
+    <!-- 8. FOOTER (QUYI QISM)                       -->
     <!-- ============================================ -->
     <footer class="footer">
         <div class="container footer-container">
             <p class="footer-text">
-                &copy; <span id="current-year">2026</span> Barcha huquqlar himoyalangan. HTML, CSS va JS bilan mehr ila yaratilgan ❤️
+                &copy; <span id="current-year">2026</span> Asilbek. Barcha huquqlar himoyalangan. HTML, CSS va JS bilan yaratilgan ❤️
             </p>
             <div class="social-links">
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/asilbek_portfolio_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
             </div>
         </div>
