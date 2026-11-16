@@ -44,9 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typewriterElement) {
         const words = [
             "Frontend Dasturchiman",
-            "Veb Dasturchiman",
-            "JavaScript Ishqibozi",
-            "Zamonaviy Saytlar Quruvchisi"
+            "Zamonaviy Saytlar Quruvchisi",
+            "JavaScript Dasturchisi 🚀",
+            "UI/UX va Animatsiyalar Ustasi ✨",
+            "Responsive Veb-Ilovalar Yaratuvchisi"
         ];
         let wordIndex = 0;
         let charIndex = 0;
@@ -338,6 +339,29 @@ document.addEventListener('DOMContentLoaded', () => {
             toast.classList.remove('show');
         }, 4000);
     }
+
+    /* --------------------------------------------------------------------------
+       10. TUGMALAR UCHUN INTERAKTIV RIPPLE (TO'LQIN) KLIK ANIMATSIYASI
+       -------------------------------------------------------------------------- */
+    const rippleButtons = document.querySelectorAll('.ripple-btn, .btn');
+    rippleButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const circle = document.createElement('span');
+            circle.classList.add('btn-ripple');
+            circle.style.left = `${x}px`;
+            circle.style.top = `${y}px`;
+
+            this.appendChild(circle);
+
+            setTimeout(() => {
+                circle.remove();
+            }, 600);
+        });
+    });
 
     console.log("🚀 Sayt to'liq yuklandi va barcha animatsiyalar faollashtirildi!");
 });
