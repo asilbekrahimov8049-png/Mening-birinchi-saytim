@@ -148,11 +148,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --------------------------------------------------------------------------
-       6. ALOQA FORMASI VALIDATSIYASI VA XABAR YUBORISH (TOAST)
-       Foydalanuvchi ma'lumot kiritib yuborganda sahifa qayta yuklanmaydi (e.preventDefault).
+       6. ALOQA FORMASINI TELEGRAM BOTGA ULASH VA YUBORISH
+       Foydalanuvchi ma'lumot kiritib yuborganda to'g'ridan-to'g'ri Telegramingizga keladi!
        -------------------------------------------------------------------------- */
+    // Telegram Bot ma'lumotlari
+    const TELEGRAM_BOT_TOKEN = '9037794886:AAElx_BlQTNFLCv-MyXHG4f4QpDV7NxVKuA';
+    const TELEGRAM_CHAT_ID = '6014931528';
+
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault(); // Sahifa yangilanib ketishini to'xtatish
 
             // Formadagi qiymatlarni olish
@@ -170,29 +174,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Tugmani "Yuklanmoqda..." holatiga o'tkazish
+            // Tugmani "Yuborilmoqda..." holatiga o'tkazish
             const originalBtnContent = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<span>Yuborilmoqda...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
 
-            // Serverga so'rov yuborish simulyatsiyasi (1.5 soniya kutish)
-            setTimeout(() => {
-                // Formani tozalash
-                contactForm.reset();
+            // Telegramga yuboriladigan matn formati
+            const telegramMessage = `🔔 <b>Saytingizdan yangi xabar!</b>\n\n` +
+                                   `👤 <b>Ism:</b> ${name}\n` +
+                                   `📧 <b>Email:</b> ${email}\n` +
+                                   `💬 <b>Xabar:</b>\n${message}`;
 
+            try {
+                // Telegram Bot API ga so'rov yuborish
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: telegramMessage,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    // Muvaffaqiyatli yuborildi: Formani tozalash va bildirishnomani ko'rsatish
+                    contactForm.reset();
+                    showToastNotification("Muvaffaqiyatli!", "Xabaringiz Telegramga yuborildi. Tez orada javob beraman.");
+                } else {
+                    console.error("Telegram API xatosi:", data);
+                    alert("Xabar yuborishda xatolik yuz berdi. Botingizga /start bosganingizga ishonch hosil qiling.");
+                }
+            } catch (error) {
+                console.error("Tarmoq xatosi:", error);
+                alert("Internet bilan bog'lanishda xatolik yuz berdi.");
+            } finally {
                 // Tugmani avvalgi holatiga qaytarish
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnContent;
-
-                // Chiroyli xabarnoma (Toast)ni ko'rsatish
-                showToastNotification();
-            }, 1200);
+            }
         });
     }
 
     // Toast bildirishnomasini ko'rsatuvchi yordamchi funksiya
-    function showToastNotification() {
+    function showToastNotification(title = "Muvaffaqiyatli!", desc = "Xabaringiz qabul qilindi.") {
         if (!toast) return;
+
+        const titleEl = toast.querySelector('.toast-title');
+        const descEl = toast.querySelector('.toast-desc');
+        if (titleEl) titleEl.textContent = title;
+        if (descEl) descEl.textContent = desc;
 
         toast.classList.add('show');
 
