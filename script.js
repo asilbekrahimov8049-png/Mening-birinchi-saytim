@@ -1,12 +1,12 @@
 /* ==========================================================================
-   ZAMONAVIY & INTERAKTIV JAVASCRIPT KODI (script.js)
-   Asilbek | Frontend Dasturchi Portfoliosi
+   nbarkiya.xyz USLUBIDAGI JAVASCRIPT KODI
+   Asilbek Rahimov | Frontend Dasturchi Portfoliosi
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* --------------------------------------------------------------------------
-       1. TELEGRAM BOT VA SHAXSIY SOZLAMALAR
+       1. TELEGRAM BOT SOZLAMALARI
        -------------------------------------------------------------------------- */
     const TELEGRAM_BOT_TOKEN = '9037794886:AAElx_BlQTNFLCv-MyXHG4f4QpDV7NxVKuA';
     const TELEGRAM_CHAT_ID = '6014931528';
@@ -23,14 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentYearSpan = document.getElementById('current-year');
     const backToTopBtn = document.getElementById('back-to-top');
     const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section[id]');
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterPills = document.querySelectorAll('.filter-pill');
     const projectCards = document.querySelectorAll('.project-card');
-    const statNumbers = document.querySelectorAll('.stat-number');
+
+    // Til elementlari
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.querySelector('.lang-dropdown');
+    const langOptions = document.querySelectorAll('.lang-option');
+    const currentLangText = document.getElementById('current-lang-text');
 
 
     /* --------------------------------------------------------------------------
-       2. FOOTERDA YILNI AVTOMATIK YANGILASH
+       2. FOOTERDA YILNI YANGILASH
        -------------------------------------------------------------------------- */
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
@@ -38,54 +42,286 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --------------------------------------------------------------------------
-       3. TYPEWRITER (YOZILUVCHI MATN EFFEKTI - FRONTEND DASTURCHI BELGISI!)
+       3. 🌐 KO'P TILLILIK TIZIMI (UZBEK, RUSSIAN, ENGLISH)
        -------------------------------------------------------------------------- */
-    const typewriterElement = document.getElementById('typewriter');
-    if (typewriterElement) {
-        const words = [
-            "Frontend Dasturchiman",
-            "Zamonaviy Saytlar Quruvchisi",
-            "JavaScript Dasturchisi 🚀",
-            "UI/UX va Animatsiyalar Ustasi ✨",
-            "Responsive Veb-Ilovalar Yaratuvchisi"
-        ];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
+    const translations = {
+        uz: {
+            nav_projects: "Loyihalar",
+            nav_experience: "Tajriba",
+            nav_skills: "Ko'nikmalar",
+            nav_contact: "Bog'lanish",
+            hero_status: "Yangi loyihalar uchun ochiq",
+            hero_role: "Frontend Dasturchi & Web Engineer",
+            hero_bio: "Zamonaviy veb-texnologiyalar, toza arxitektura va har qanday ekranga mukammal moslashuvchi yuqori unumdorlikka ega interaktiv veb-saytlar yarataman.",
+            hero_btn_projects: "Loyihalarim",
+            hero_btn_contact: "Bog'lanish",
+            proj_title: "Loyihalar",
+            proj_subtitle: "Mening eng yaxshi amaliy ishlarim va texnik yechimlarim",
+            filter_all: "Barchasi",
+            filter_web: "Veb-saytlar",
+            filter_app: "Veb-ilovalar",
+            proj_1_title: "Online Market Platformasi",
+            proj_1_desc: "Mahsulotlar katalogi, interaktiv savatcha, saralash va umumiy narxni hisoblovchi to'liq funksional savdo do'koni.",
+            proj_2_title: "Global Weather Pro",
+            proj_2_desc: "Dunyo shaharlarining real vaqtdagi ob-havo ma'lumotlari, namlik, shamol tezligi va 5 kunlik prognoz tizimi.",
+            proj_3_title: "TaskFlow — Ishlar Rejasi",
+            proj_3_desc: "Kundalik rejalarni boshqarish, bajarilgan deb belgilash, qidiruv va brauzer xotirasida saqlab qoluvchi to-do tizimi.",
+            card_view: "Batafsil ko'rish",
+            exp_title: "Tajriba & Faoliyat",
+            exp_subtitle: "Amaliy ish faoliyatim va rivojlanish bosqichlarim",
+            exp_1_role: "Frontend Dasturchi",
+            exp_1_company: "Mustaqil Loyihalar (Freelance)",
+            exp_1_desc: "Mijozlar uchun zamonaviy korporativ saytlar, landing pagelar va interaktiv web-interfeyslar ishlab chiqish. Kod tozaligi va tezkor yuklanishiga e'tibor qaratish.",
+            exp_2_role: "Veb Dasturlash Amaliyoti",
+            exp_2_company: "Amaliy Ta'lim & Loyihalar",
+            exp_2_desc: "HTML5, CSS3, JavaScript ES6+ texnologiyalarini chuqur o'rganish, Git/GitHub bilan ishlash va 10 dan ortiq real loyihalarni yaratish.",
+            exp_3_role: "Ochiq Kodli Loyihalar",
+            exp_3_desc: "Ochiq kodli shablonlar yaratish, zamonaviy UI komponentlarni jamlash va Vercel platformasi orqali veb-saytlarni bepul joylashtirish.",
+            skills_title: "Ko'nikmalar",
+            skills_subtitle: "Har bir texnologiya bo'yicha mahorat va baholash ko'rsatkichlari",
+            skill_advanced: "Yuqori daraja",
+            skill_proficient: "Ishonchli bilim",
+            skill_html_desc: "Semantik teglash, SEO talablari va toza veb-arxitektura.",
+            skill_css_desc: "Moslashuvchan dizayn, CSS animatsiyalar va zamonaviy UI.",
+            skill_js_desc: "DOM boshqaruvi, Asinxron API so'rovlar va interaktiv mantiq.",
+            skill_resp_desc: "Barcha ekranlar (smartfon, planshet, noutbuk) uchun to'liq moslik.",
+            skill_git_desc: "Versiyalarni boshqarish, repozitoriylar va CI/CD deploy.",
+            skill_vercel_desc: "Veb-ilovalarni 24/7 uzluksiz serverga joylash va domenni sozlash.",
+            contact_title: "Bog'lanish",
+            contact_subtitle: "Loyiha taklifi yoki savollaringiz bo'lsa, xabar qoldiring",
+            form_name_label: "Ismingiz *",
+            form_contact_label: "Email yoki Telefon *",
+            form_msg_label: "Xabaringiz *",
+            form_submit_btn: "Xabarni yuborish",
+            sidebar_badge: "Tezkor Aloqa",
+            sidebar_title: "Keling, yangi loyihani birga quramiz!",
+            sidebar_desc: "Veb-sayt buyurtmasi, hamkorlik yoki boshqa texnik savollar bo'yicha to'g'ridan-to'g'ri bog'lanishingiz mumkin.",
+            sidebar_location_lbl: "Manzil:",
+            sidebar_location_val: "Toshkent, O'zbekiston",
+            tg_status_text: "Xabarlar to'g'ridan-to'g'ri Telegramga boradi",
+            toast_title: "Muvaffaqiyatli!",
+            toast_desc: "Xabaringiz Telegramga yetkazildi. Rahmat!",
+            footer_rights: "Barcha huquqlar himoyalangan.",
+            ph_name: "Ismingizni kiriting",
+            ph_contact: "Email yoki telefon raqamingiz",
+            ph_msg: "Xabaringizni bu yerga yozing..."
+        },
+        ru: {
+            nav_projects: "Проекты",
+            nav_experience: "Опыт",
+            nav_skills: "Навыки",
+            nav_contact: "Контакты",
+            hero_status: "Открыт для предложений",
+            hero_role: "Frontend Разработчик & Web Engineer",
+            hero_bio: "Создаю современные, масштабируемые и высокопроизводительные веб-приложения с чистой архитектурой и безупречной адаптивностью.",
+            hero_btn_projects: "Мои Проекты",
+            hero_btn_contact: "Связаться",
+            proj_title: "Проекты",
+            proj_subtitle: "Мои ключевые практические работы и технические решения",
+            filter_all: "Все",
+            filter_web: "Веб-сайты",
+            filter_app: "Веб-приложения",
+            proj_1_title: "Онлайн Маркет Платформа",
+            proj_1_desc: "Каталог товаров, интерактивная корзина, фильтрация и точный расчет стоимости заказа.",
+            proj_2_title: "Global Weather Pro",
+            proj_2_desc: "Погода городов мира в реальном времени, влажность, скорость ветра и 5-дневный прогноз.",
+            proj_3_title: "TaskFlow — План Дел",
+            proj_3_desc: "Управление задачами, отметки о выполнении, поиск и автосохранение в памяти браузера.",
+            card_view: "Смотреть проект",
+            exp_title: "Опыт & Деятельность",
+            exp_subtitle: "Этапы профессионального развития и практической работы",
+            exp_1_role: "Frontend Разработчик",
+            exp_1_company: "Фриланс & Собственные проекты",
+            exp_1_desc: "Разработка современных корпоративных сайтов, посадочных страниц и интерактивных интерфейсов с упором на скорость загрузки.",
+            exp_2_role: "Практика Веб-Разработки",
+            exp_2_company: "Практическое Обучение",
+            exp_2_desc: "Глубокое изучение HTML5, CSS3, JavaScript ES6+, работа с Git/GitHub и реализация более 10 проектов.",
+            exp_3_role: "Open Source Проекты",
+            exp_3_desc: "Создание открытых шаблонов, верстка современных компонентов и деплой на Vercel.",
+            skills_title: "Навыки",
+            skills_subtitle: "Оценка уровня владения ключевыми технологиями",
+            skill_advanced: "Продвинутый уровень",
+            skill_proficient: "Уверенные знания",
+            skill_html_desc: "Семантическая верстка, SEO стандарты и чистая структура.",
+            skill_css_desc: "Адаптивный дизайн, CSS анимации и современный UI.",
+            skill_js_desc: "Управление DOM, асинхронные API запросы и интерактивность.",
+            skill_resp_desc: "Полная поддержка смартфонов, планшетов и десктопов.",
+            skill_git_desc: "Контроль версий, репозитории и автоматический деплой.",
+            skill_vercel_desc: "Размещение веб-приложений на 24/7 серверах Vercel.",
+            contact_title: "Контакты",
+            contact_subtitle: "Оставьте сообщение, если у вас есть проект или предложение",
+            form_name_label: "Ваше имя *",
+            form_contact_label: "Email или Телефон *",
+            form_msg_label: "Ваше сообщение *",
+            form_submit_btn: "Отправить сообщение",
+            sidebar_badge: "Быстрая Связь",
+            sidebar_title: "Давайте создадим проект вместе!",
+            sidebar_desc: "Вы можете связаться со мной по вопросам заказа сайта, сотрудничества или технических консультаций.",
+            sidebar_location_lbl: "Город:",
+            sidebar_location_val: "Ташкент, Узбекистан",
+            tg_status_text: "Сообщения поступают напрямую в Telegram",
+            toast_title: "Успешно!",
+            toast_desc: "Ваше сообщение отправлено в Telegram. Спасибо!",
+            footer_rights: "Все права защищены.",
+            ph_name: "Введите ваше имя",
+            ph_contact: "Email или номер телефона",
+            ph_msg: "Напишите ваше сообщение здесь..."
+        },
+        en: {
+            nav_projects: "Projects",
+            nav_experience: "Experience",
+            nav_skills: "Skills",
+            nav_contact: "Contact",
+            hero_status: "Available for work",
+            hero_role: "Frontend Developer & Web Engineer",
+            hero_bio: "Building clean, scalable, and high-performance interactive web applications with modern design systems and seamless responsiveness.",
+            hero_btn_projects: "Projects",
+            hero_btn_contact: "Contact Me",
+            proj_title: "Projects",
+            proj_subtitle: "Showcasing impactful projects and technical achievements",
+            filter_all: "All",
+            filter_web: "Websites",
+            filter_app: "Web Apps",
+            proj_1_title: "E-Commerce Market Platform",
+            proj_1_desc: "Product catalog, interactive cart, filtering system, and live checkout total calculations.",
+            proj_2_title: "Global Weather Pro",
+            proj_2_desc: "Live global weather data, humidity, wind velocity, and 5-day comprehensive forecast.",
+            proj_3_title: "TaskFlow — Productivity App",
+            proj_3_desc: "Task management, status toggle, search filter, and localStorage data persistence.",
+            card_view: "Read more",
+            exp_title: "Experience",
+            exp_subtitle: "Professional milestones and career timeline",
+            exp_1_role: "Frontend Developer",
+            exp_1_company: "Independent Freelance",
+            exp_1_desc: "Developing modern corporate landing pages, web tools, and accessible interactive interfaces with focus on performance.",
+            exp_2_role: "Web Development Practice",
+            exp_2_company: "Applied Training & Projects",
+            exp_2_desc: "In-depth study of HTML5, CSS3, JavaScript ES6+, Git/GitHub workflow, building 10+ real-world web projects.",
+            exp_3_role: "Open Source Projects",
+            exp_3_desc: "Building open source templates, accessible UI component kits, and automated Vercel CI/CD deployment.",
+            skills_title: "Skills & Stack",
+            skills_subtitle: "Proficiency levels and technical ratings across core tools",
+            skill_advanced: "Advanced Level",
+            skill_proficient: "Proficient",
+            skill_html_desc: "Semantic architecture, web accessibility, and clean markup.",
+            skill_css_desc: "Modern layouts, Flexbox, Grid, and slick CSS micro-animations.",
+            skill_js_desc: "DOM manipulation, asynchronous fetch APIs, and interactive states.",
+            skill_resp_desc: "Flawless mobile-first responsiveness across all viewport sizes.",
+            skill_git_desc: "Version control, GitHub repositories, and CI/CD releases.",
+            skill_vercel_desc: "Deploying high-availability web applications on edge networks.",
+            contact_title: "Get In Touch",
+            contact_subtitle: "Reach out for project inquiries or technical collaborations",
+            form_name_label: "Your Name *",
+            form_contact_label: "Email or Phone *",
+            form_msg_label: "Your Message *",
+            form_submit_btn: "Send Message",
+            sidebar_badge: "Direct Contact",
+            sidebar_title: "Let's build something great together!",
+            sidebar_desc: "Feel free to reach out for web development, technical inquiries, or collaborative opportunities.",
+            sidebar_location_lbl: "Location:",
+            sidebar_location_val: "Tashkent, Uzbekistan",
+            tg_status_text: "Messages delivered straight to private Telegram",
+            toast_title: "Success!",
+            toast_desc: "Your message has been delivered to Telegram. Thank you!",
+            footer_rights: "All rights reserved.",
+            ph_name: "Enter your full name",
+            ph_contact: "Email or phone number",
+            ph_msg: "Write your message here..."
+        }
+    };
 
-        function type() {
-            const currentWord = words[wordIndex];
-            
-            if (isDeleting) {
-                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 50; // O'chirish tezroq
-            } else {
-                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 110; // Yozish maromi
-            }
+    let currentLanguage = localStorage.getItem('site_lang') || 'uz';
 
-            // So'z to'liq yozilganda
-            if (!isDeleting && charIndex === currentWord.length) {
-                isDeleting = true;
-                typingSpeed = 1800; // So'z oxirida kutish
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                typingSpeed = 400; // Yangi so'z oldidan kutish
-            }
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLanguage = lang;
+        localStorage.setItem('site_lang', lang);
 
-            setTimeout(type, typingSpeed);
+        if (currentLangText) {
+            currentLangText.textContent = lang.toUpperCase();
         }
 
-        type(); // Typewriter effektini ishga tushirish
+        langOptions.forEach(opt => {
+            if (opt.getAttribute('data-lang') === lang) {
+                opt.classList.add('active');
+            } else {
+                opt.classList.remove('active');
+            }
+        });
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+            const phKey = el.getAttribute('data-i18n-ph');
+            if (translations[lang][phKey]) {
+                el.setAttribute('placeholder', translations[lang][phKey]);
+            }
+        });
+    }
+
+    if (langBtn && langDropdown) {
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('open');
+        });
+
+        langOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                const selectedLang = opt.getAttribute('data-lang');
+                setLanguage(selectedLang);
+                langDropdown.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', () => {
+            langDropdown.classList.remove('open');
+        });
     }
 
 
     /* --------------------------------------------------------------------------
-       4. MOBIL QURILMALAR UCHUN GAMBURGER MENYU
+       4. TUN (DARK) VA KUN (LIGHT) REJIMI (nbarkiya.xyz kabi)
+       -------------------------------------------------------------------------- */
+    const savedTheme = localStorage.getItem('site-theme') || 'dark';
+
+    if (savedTheme === 'light') {
+        document.body.classList.remove('dark-mode');
+        document.documentElement.classList.remove('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark-mode');
+
+            if (isDark) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('site-theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('site-theme', 'light');
+            }
+        });
+    }
+
+
+    /* --------------------------------------------------------------------------
+       5. MOBIL GAMBURGER MENYU
        -------------------------------------------------------------------------- */
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
@@ -93,7 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('open');
         });
 
-        // Menyu havolasi bosilganda menyuni yopish
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
@@ -101,7 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Tashqariga bosilganda menyuni yopish
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 menuToggle.classList.remove('active');
@@ -112,56 +346,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --------------------------------------------------------------------------
-       5. TUN (DARK) VA KUN (LIGHT) REJIMI (LOCALSTORAGE BILAN)
+       6. LOYIHALAR FILTRI (SEGMENTED TABS)
        -------------------------------------------------------------------------- */
-    const savedTheme = localStorage.getItem('site-theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-    }
+    filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            filterPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
+            const filterValue = pill.getAttribute('data-filter');
 
-            if (isDark) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                localStorage.setItem('site-theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                localStorage.setItem('site-theme', 'light');
-            }
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+
+                if (filterValue === 'all' || category === filterValue) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 30);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(10px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 250);
+                }
+            });
         });
-    }
+    });
 
 
     /* --------------------------------------------------------------------------
-       6. SCROLL XODISALARI: HEADER, ACTIVE LINK VA BACK-TO-TOP
+       7. SCROLL XODISALARI: BACK-TO-TOP VA ACTIVE NAV
        -------------------------------------------------------------------------- */
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
-        // Sticky headerga soya berish
-        if (scrollY > 30) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Back-to-top tugmasini ko'rsatish
         if (backToTopBtn) {
-            if (scrollY > 400) {
+            if (scrollY > 350) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
             }
         }
 
-        // Active linkni aniqlash
         highlightActiveNavLink(scrollY);
     });
 
@@ -175,7 +403,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function highlightActiveNavLink(scrollY) {
-        const scrollPosition = scrollY + 140;
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPosition = scrollY + 120;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -195,77 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --------------------------------------------------------------------------
-       7. STATISTIKA RAQAMLARINING O'SIB BORISH ANIMATSIYASI
-       -------------------------------------------------------------------------- */
-    let animated = false;
-    function startCounting() {
-        statNumbers.forEach(stat => {
-            const target = +stat.getAttribute('data-target');
-            let count = 0;
-            const increment = target / 35;
-
-            const updateNumber = () => {
-                count += increment;
-                if (count < target) {
-                    stat.textContent = Math.ceil(count);
-                    setTimeout(updateNumber, 35);
-                } else {
-                    stat.textContent = target;
-                }
-            };
-            updateNumber();
-        });
-    }
-
-    const statsSection = document.querySelector('.stats-section');
-    if (statsSection) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !animated) {
-                    startCounting();
-                    animated = true;
-                }
-            });
-        }, { threshold: 0.3 });
-
-        observer.observe(statsSection);
-    }
-
-
-    /* --------------------------------------------------------------------------
-       8. LOYIHALAR FILTRI (PROJECT FILTER TABS)
-       -------------------------------------------------------------------------- */
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Faol tugmani belgilash
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-
-                if (filterValue === 'all' || category === filterValue) {
-                    card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(15px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
-
-
-    /* --------------------------------------------------------------------------
-       9. ALOQA FORMASI VA TELEGRAM BOTGA XABAR YUBORISH
+       8. ALOQA FORMASI VA TELEGRAM BOTGA XABAR YUBORISH
        -------------------------------------------------------------------------- */
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -286,12 +445,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const originalBtnContent = submitBtn.innerHTML;
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span>Telegramga yuborilmoqda...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+            submitBtn.innerHTML = `<span>Yuborilmoqda...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
 
             const telegramMessage = `🔔 <b>Saytingizdan yangi xabar!</b>\n\n` +
                                    `👤 <b>Ism:</b> ${name}\n` +
                                    `📧 <b>Email/Tel:</b> ${email}\n` +
                                    `💬 <b>Xabar:</b>\n${message}\n\n` +
+                                   `🌐 <b>Til:</b> ${currentLanguage.toUpperCase()}\n` +
                                    `⏰ <i>Vaqt: ${new Date().toLocaleTimeString()}</i>`;
 
             try {
@@ -311,7 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (data.ok) {
                     contactForm.reset();
-                    showToastNotification("Muvaffaqiyatli!", "Xabaringiz Telegramga yuborildi. Rahmat!");
+                    const t = translations[currentLanguage];
+                    showToastNotification(t.toast_title, t.toast_desc);
                 } else {
                     console.error("Telegram API xatosi:", data);
                     alert("Xabar yuborishda xatolik yuz berdi. Botingizga /start bosganingizga ishonch hosil qiling.");
@@ -340,28 +501,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
-    /* --------------------------------------------------------------------------
-       10. TUGMALAR UCHUN INTERAKTIV RIPPLE (TO'LQIN) KLIK ANIMATSIYASI
-       -------------------------------------------------------------------------- */
-    const rippleButtons = document.querySelectorAll('.ripple-btn, .btn');
-    rippleButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    // Saqlangan tilni yuklash
+    setLanguage(currentLanguage);
 
-            const circle = document.createElement('span');
-            circle.classList.add('btn-ripple');
-            circle.style.left = `${x}px`;
-            circle.style.top = `${y}px`;
-
-            this.appendChild(circle);
-
-            setTimeout(() => {
-                circle.remove();
-            }, 600);
-        });
-    });
-
-    console.log("🚀 Sayt to'liq yuklandi va barcha animatsiyalar faollashtirildi!");
+    console.log("🚀 nbarkiya.xyz uslubidagi portfolio muvaffaqiyatli ishga tushdi!");
 });
