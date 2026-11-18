@@ -455,26 +455,59 @@ document.addEventListener('DOMContentLoaded', () => {
                                    `⏰ <i>Vaqt: ${new Date().toLocaleTimeString()}</i>`;
 
             try {
-                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: telegramMessage,
-                        parse_mode: 'HTML'
-                    })
-                });
+                let isSuccess = false;
 
-                const data = await response.json();
+                // 1. Vercel Serverless Backend (/api/contact) orqali xavfsiz yuborish
+                try {
+                    const backendRes = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            message,
+                            lang: currentLanguage
+                        })
+                    });
 
-                if (data.ok) {
+                    if (backendRes.ok) {
+                        const data = await backendRes.json();
+                        if (data.success) {
+                            isSuccess = true;
+                        }
+                    }
+                } catch (backendError) {
+                    // Mahalliy kompyuterda (file://) ochilganda backend bo'lmasa, zaxira sifatida ishlaydi
+                    console.log("Backend ulanmadi, to'g'ridan-to'g'ri Telegramga yuborilmoqda...");
+                }
+
+                // 2. Agar backend ulanmagan bo'lsa, zaxira to'g'ridan-to'g'ri Telegram API
+                if (!isSuccess) {
+                    const fallbackRes = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: telegramMessage,
+                            parse_mode: 'HTML'
+                        })
+                    });
+
+                    const fallbackData = await fallbackRes.json();
+                    if (fallbackData.ok) {
+                        isSuccess = true;
+                    }
+                }
+
+                if (isSuccess) {
                     contactForm.reset();
                     const t = translations[currentLanguage];
                     showToastNotification(t.toast_title, t.toast_desc);
                 } else {
-                    console.error("Telegram API xatosi:", data);
                     alert("Xabar yuborishda xatolik yuz berdi. Botingizga /start bosganingizga ishonch hosil qiling.");
                 }
             } catch (error) {
