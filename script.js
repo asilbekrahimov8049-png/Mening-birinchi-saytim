@@ -49,12 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_projects: "Loyihalar",
             nav_experience: "Tajriba",
             nav_skills: "Ko'nikmalar",
+            nav_ai: "AI Assistent",
             nav_contact: "Bog'lanish",
             hero_status: "Yangi loyihalar uchun ochiq",
             hero_role: "Frontend Dasturchi & Web Engineer",
             hero_bio: "Zamonaviy veb-texnologiyalar, toza arxitektura va har qanday ekranga mukammal moslashuvchi yuqori unumdorlikka ega interaktiv veb-saytlar yarataman.",
             hero_btn_projects: "Loyihalarim",
+            hero_btn_ai: "AI Assistent",
             hero_btn_contact: "Bog'lanish",
+            ai_sec_pill: "Sun'iy Intellekt 24/7",
+            ai_sec_title: "Asilbek AI — Aqlli Yordamchi",
+            ai_sec_subtitle: "Asilbekning tajribasi, xizmatlari va loyihalari bo'yicha sun'iy intellektdan real vaqtda javob oling",
+            ai_sec_status: "24/7 Rejimda Faol",
+            ai_sec_desc: "Ushbu sun'iy intellekt Asilbekning shaxsiy ma'lumotlari, loyihalari va narxlari bo'yicha to'liq o'qitilgan. Istalgan savolingizni berib, darhol javob olishingiz mumkin.",
+            ai_sec_quick_title: "Tezkor savollar (bosing):",
             proj_title: "Loyihalar",
             proj_subtitle: "Mening eng yaxshi amaliy ishlarim va texnik yechimlarim",
             filter_all: "Barchasi",
@@ -120,12 +128,20 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_projects: "Проекты",
             nav_experience: "Опыт",
             nav_skills: "Навыки",
+            nav_ai: "ИИ-Ассистент",
             nav_contact: "Контакты",
             hero_status: "Открыт для предложений",
             hero_role: "Frontend Разработчик & Web Engineer",
             hero_bio: "Создаю современные, масштабируемые и высокопроизводительные веб-приложения с чистой архитектурой и безупречной адаптивностью.",
             hero_btn_projects: "Мои Проекты",
+            hero_btn_ai: "ИИ-Ассистент",
             hero_btn_contact: "Связаться",
+            ai_sec_pill: "Искусственный Интеллект 24/7",
+            ai_sec_title: "Asilbek AI — Умный Помощник",
+            ai_sec_subtitle: "Получите мгновенные ответы об опыте, услугах и проектах Асилбека от искусственного интеллекта",
+            ai_sec_status: "Активен в режиме 24/7",
+            ai_sec_desc: "Этот ИИ обучен на данных об опыте, проектах и ценах Асилбека. Задайте любой вопрос и получите ответ мгновенно.",
+            ai_sec_quick_title: "Быстрые вопросы (нажмите):",
             proj_title: "Проекты",
             proj_subtitle: "Мои ключевые практические работы и технические решения",
             filter_all: "Все",
@@ -191,12 +207,20 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_projects: "Projects",
             nav_experience: "Experience",
             nav_skills: "Skills",
+            nav_ai: "AI Assistant",
             nav_contact: "Contact",
             hero_status: "Available for work",
             hero_role: "Frontend Developer & Web Engineer",
             hero_bio: "Building clean, scalable, and high-performance interactive web applications with modern design systems and seamless responsiveness.",
             hero_btn_projects: "Projects",
+            hero_btn_ai: "AI Assistant",
             hero_btn_contact: "Contact Me",
+            ai_sec_pill: "Artificial Intelligence 24/7",
+            ai_sec_title: "Asilbek AI — Smart Assistant",
+            ai_sec_subtitle: "Get real-time answers about Asilbek's skills, services, and projects from AI",
+            ai_sec_status: "Active 24/7",
+            ai_sec_desc: "This AI is trained on Asilbek's background, projects, and pricing. Feel free to ask anything and get instant replies.",
+            ai_sec_quick_title: "Quick prompts (click):",
             proj_title: "Projects",
             proj_subtitle: "Showcasing impactful projects and technical achievements",
             filter_all: "All",
@@ -299,6 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const aiGreetingText = document.getElementById('aiGreetingText');
         const aiInitialTime = document.getElementById('aiInitialTime');
         const aiQuickPrompts = document.getElementById('aiQuickPrompts');
+        const pageAiGreetingText = document.getElementById('pageAiGreetingText');
+        const pageAiInput = document.getElementById('pageAiInput');
 
         if (translations[lang]) {
             if (aiHeaderStatus && translations[lang].ai_status) {
@@ -309,6 +335,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (aiGreetingText && translations[lang].ai_greeting) {
                 aiGreetingText.textContent = translations[lang].ai_greeting;
+            }
+            if (pageAiGreetingText && translations[lang].ai_greeting) {
+                pageAiGreetingText.textContent = translations[lang].ai_greeting;
+            }
+            if (pageAiInput && translations[lang].ai_ph) {
+                pageAiInput.placeholder = translations[lang].ai_ph;
             }
             if (aiInitialTime && translations[lang].ai_time_now) {
                 aiInitialTime.textContent = translations[lang].ai_time_now;
@@ -787,6 +819,142 @@ document.addEventListener('DOMContentLoaded', () => {
             if (aiChatInput && aiChatInput.value.trim() !== '') {
                 sendAiMessage(aiChatInput.value);
             }
+        });
+    }
+
+    // ==========================================================================
+    // 🤖 SAHIFADAGI INTERAKTIV AI TERMINAL MANTIQI (In-Page Terminal)
+    // ==========================================================================
+    const pageAiForm = document.getElementById('pageAiForm');
+    const pageAiInput = document.getElementById('pageAiInput');
+    const pageAiSubmitBtn = document.getElementById('pageAiSubmitBtn');
+    const pageAiMessages = document.getElementById('pageAiMessages');
+    const pageAiTypingIndicator = document.getElementById('pageAiTypingIndicator');
+    const pageAiResetBtn = document.getElementById('pageAiResetBtn');
+    const pageAiPromptCards = document.querySelectorAll('.ai-prompt-card');
+
+    function scrollPageAiBottom() {
+        if (pageAiMessages) {
+            pageAiMessages.scrollTop = pageAiMessages.scrollHeight;
+        }
+    }
+
+    function appendPageMessageBubble(text, sender = 'user') {
+        if (!pageAiMessages) return;
+
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `ai-message ai-message-${sender}`;
+
+        if (sender === 'bot') {
+            msgDiv.innerHTML = `
+                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="ai-msg-bubble">
+                    <p>${escapeHtml(text)}</p>
+                    <span class="ai-msg-time">${timeStr}</span>
+                </div>
+            `;
+        } else {
+            msgDiv.innerHTML = `
+                <div class="ai-msg-bubble">
+                    <p>${escapeHtml(text)}</p>
+                    <span class="ai-msg-time">${timeStr}</span>
+                </div>
+            `;
+        }
+
+        pageAiMessages.appendChild(msgDiv);
+        scrollPageAiBottom();
+    }
+
+    async function sendPageAiMessage(messageText) {
+        if (!messageText || messageText.trim() === '') return;
+        const text = messageText.trim();
+
+        appendPageMessageBubble(text, 'user');
+
+        if (pageAiInput) pageAiInput.value = '';
+        if (pageAiSubmitBtn) pageAiSubmitBtn.disabled = true;
+        if (pageAiTypingIndicator) {
+            pageAiTypingIndicator.classList.add('show');
+            scrollPageAiBottom();
+        }
+
+        try {
+            let botReply = "";
+
+            // 1. Backend orqali so'rash
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        lang: currentLanguage
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.reply) {
+                        botReply = data.reply;
+                    }
+                }
+            } catch (backendError) {
+                console.log("AI Backend so'rovi oflayn/mahalliy...");
+            }
+
+            // 2. Agar backend ulanmagan bo'lsa, zaxira intellekt
+            if (!botReply) {
+                await new Promise(resolve => setTimeout(resolve, 600));
+                botReply = getFallbackAiReply(text, currentLanguage);
+            }
+
+            if (pageAiTypingIndicator) pageAiTypingIndicator.classList.remove('show');
+            appendPageMessageBubble(botReply, 'bot');
+
+        } catch (error) {
+            console.error("AI xatosi:", error);
+            if (pageAiTypingIndicator) pageAiTypingIndicator.classList.remove('show');
+            appendPageMessageBubble("Kechirasiz, javob olishda xatolik yuz berdi.", 'bot');
+        } finally {
+            if (pageAiSubmitBtn) pageAiSubmitBtn.disabled = false;
+            if (pageAiInput) pageAiInput.focus();
+        }
+    }
+
+    if (pageAiForm) {
+        pageAiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (pageAiInput && pageAiInput.value.trim() !== '') {
+                sendPageAiMessage(pageAiInput.value);
+            }
+        });
+    }
+
+    // Sahifadagi tezkor savollar kartalari bosilganda
+    pageAiPromptCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const prompt = card.getAttribute('data-prompt');
+            if (prompt) {
+                sendPageAiMessage(prompt);
+            }
+        });
+    });
+
+    // Sahifadagi chatni tozalash
+    if (pageAiResetBtn && pageAiMessages) {
+        pageAiResetBtn.addEventListener('click', () => {
+            const t = translations[currentLanguage] || translations.uz;
+            pageAiMessages.innerHTML = `
+                <div class="ai-message ai-message-bot">
+                    <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="ai-msg-bubble">
+                        <p class="ai-greeting-text">${t.ai_greeting}</p>
+                        <span class="ai-msg-time">${t.ai_time_now}</span>
+                    </div>
+                </div>
+            `;
         });
     }
 

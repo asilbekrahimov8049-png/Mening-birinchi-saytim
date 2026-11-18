@@ -35,6 +35,7 @@
                     <li class="nav-item"><a href="#projects" class="nav-link" data-i18n="nav_projects">Loyihalar</a></li>
                     <li class="nav-item"><a href="#experience" class="nav-link" data-i18n="nav_experience">Tajriba</a></li>
                     <li class="nav-item"><a href="#skills" class="nav-link" data-i18n="nav_skills">Ko'nikmalar</a></li>
+                    <li class="nav-item"><a href="#ai-assistant" class="nav-link nav-link-ai" data-i18n="nav_ai"><i class="fa-solid fa-robot"></i> AI Assistent</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link" data-i18n="nav_contact">Bog'lanish</a></li>
                 </ul>
             </nav>
@@ -109,6 +110,10 @@
                     <a href="#projects" class="btn btn-primary">
                         <i class="fa-solid fa-arrow-down"></i>
                         <span data-i18n="hero_btn_projects">Loyihalarim</span>
+                    </a>
+                    <a href="#ai-assistant" class="btn btn-ai-hero">
+                        <i class="fa-solid fa-robot"></i>
+                        <span data-i18n="hero_btn_ai">AI Assistent</span>
                     </a>
                     <a href="#contact" class="btn btn-secondary">
                         <i class="fa-regular fa-paper-plane"></i>
@@ -386,7 +391,133 @@
         <hr class="section-divider">
 
         <!-- ============================================ -->
-        <!-- 6. BOG'LANISH (CONTACT) BO'LIMI             -->
+        <!-- 6. SUN'IY INTELLEKT (AI ASSISTENT) BO'LIMI  -->
+        <!-- ============================================ -->
+        <section class="section ai-showcase-section" id="ai-assistant">
+            <div class="container">
+                <div class="section-header">
+                    <div class="ai-section-pill">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span data-i18n="ai_sec_pill">Sun'iy Intellekt 24/7</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="ai_sec_title">Asilbek AI — Aqlli Yordamchi</h2>
+                    <p class="section-subtitle" data-i18n="ai_sec_subtitle">Asilbekning tajribasi, xizmatlari va loyihalari bo'yicha sun'iy intellektdan real vaqtda javob oling</p>
+                </div>
+
+                <div class="ai-showcase-grid">
+                    <!-- Chap: AI haqida va tezkor savollar kartalari -->
+                    <div class="ai-info-card">
+                        <div class="ai-badge-header">
+                            <div class="ai-bot-avatar-lg">
+                                <i class="fa-solid fa-robot"></i>
+                                <span class="ai-status-pulse"></span>
+                            </div>
+                            <div>
+                                <h3 class="ai-card-name">Asilbek AI Assistent</h3>
+                                <p class="ai-card-status"><span class="pulse-dot"></span> <span data-i18n="ai_sec_status">24/7 Rejimda Faol</span></p>
+                            </div>
+                        </div>
+
+                        <p class="ai-card-desc" data-i18n="ai_sec_desc">
+                            Ushbu sun'iy intellekt Asilbekning shaxsiy ma'lumotlari, loyihalari va narxlari bo'yicha to'liq o'qitilgan. Istalgan savolingizni berib, darhol javob olishingiz mumkin.
+                        </p>
+
+                        <div class="ai-prompt-cards-title">
+                            <i class="fa-regular fa-lightbulb"></i>
+                            <span data-i18n="ai_sec_quick_title">Tezkor savollar (bosing):</span>
+                        </div>
+
+                        <div class="ai-prompt-cards" id="aiPagePromptCards">
+                            <button type="button" class="ai-prompt-card" data-prompt="Asilbek kim va nimalar qila oladi?">
+                                <span class="ai-prompt-card-icon">👨‍💻</span>
+                                <div class="ai-prompt-card-text">
+                                    <strong>Asilbek kim?</strong>
+                                    <small>Ko'nikmalar va yo'nalishi</small>
+                                </div>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                            <button type="button" class="ai-prompt-card" data-prompt="Qanday loyihalaringiz bor va ularni ko'rsat?">
+                                <span class="ai-prompt-card-icon">🚀</span>
+                                <div class="ai-prompt-card-text">
+                                    <strong>Loyihalari</strong>
+                                    <small>E-Commerce, Weather, TaskFlow</small>
+                                </div>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                            <button type="button" class="ai-prompt-card" data-prompt="Sayt buyurtma qilish narxi va muddati qancha?">
+                                <span class="ai-prompt-card-icon">💰</span>
+                                <div class="ai-prompt-card-text">
+                                    <strong>Sayt narxi va muddati</strong>
+                                    <small>Hisob-kitob va maslahat</small>
+                                </div>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+
+                            <button type="button" class="ai-prompt-card" data-prompt="Asilbek bilan qanday bog'lansa bo'ladi?">
+                                <span class="ai-prompt-card-icon">📱</span>
+                                <div class="ai-prompt-card-text">
+                                    <strong>Bog'lanish usullari</strong>
+                                    <small>Telegram, Instagram, Email</small>
+                                </div>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- O'ng: Sahifaning o'zidagi to'liq Interaktiv Chat oynasi -->
+                    <div class="ai-terminal-card">
+                        <div class="ai-terminal-header">
+                            <div class="ai-terminal-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <div class="ai-terminal-title">
+                                <i class="fa-solid fa-robot"></i> Asilbek AI Chat
+                            </div>
+                            <button type="button" class="ai-terminal-reset" id="pageAiResetBtn" title="Suhbatni tozalash">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
+
+                        <div class="ai-terminal-messages" id="pageAiMessages">
+                            <div class="ai-message ai-message-bot">
+                                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                                <div class="ai-msg-bubble">
+                                    <p class="ai-greeting-text" id="pageAiGreetingText">
+                                        Assalomu alaykum! Men Asilbekning aqlli AI assistentiman 🤖. Asilbekning bilimlari, loyihalari yoki yangi veb-sayt buyurtma qilish bo'yicha savollaringiz bo'lsa, bu yerga bemalol yozishingiz mumkin!
+                                    </p>
+                                    <span class="ai-msg-time">Hozir</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Typing animatsiyasi -->
+                        <div class="ai-typing-indicator" id="pageAiTypingIndicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <!-- Chat yozish qismi -->
+                        <form class="ai-terminal-footer" id="pageAiForm">
+                            <input type="text" id="pageAiInput" class="ai-terminal-input" placeholder="Savolingizni bu yerga yozing..." autocomplete="off" required>
+                            <button type="submit" class="ai-terminal-submit-btn" id="pageAiSubmitBtn">
+                                <span>Yuborish</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ============================================ -->
+        <!-- 7. BOG'LANISH (CONTACT) BO'LIMI             -->
         <!-- ============================================ -->
         <section class="section" id="contact">
             <div class="container">
