@@ -1,17 +1,13 @@
 /* ==========================================================================
-   nbarkiya.xyz USLUBIDAGI JAVASCRIPT KODI
-   Asilbek Rahimov | Frontend Dasturchi Portfoliosi
+   nbarkiya.xyz USLUBIDAGI PROFESSIONAL JAVASCRIPT KODI
+   Asilbek Rahimov | Frontend Dasturchi & Web Engineer Portfoliosi
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --------------------------------------------------------------------------
-       1. TELEGRAM BOT SOZLAMALARI
-       -------------------------------------------------------------------------- */
-    const TELEGRAM_BOT_TOKEN = '9037794886:AAElx_BlQTNFLCv-MyXHG4f4QpDV7NxVKuA';
-    const TELEGRAM_CHAT_ID = '6014931528';
-
-    // DOM Elementlari
+    // --------------------------------------------------------------------------
+    // 1. DOM ELEMENTLARI
+    // --------------------------------------------------------------------------
     const header = document.getElementById('header');
     const navMenu = document.getElementById('nav-menu');
     const menuToggle = document.getElementById('menu-toggle');
@@ -26,24 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterPills = document.querySelectorAll('.filter-pill');
     const projectCards = document.querySelectorAll('.project-card');
 
-    // Til elementlari
+    // Til tanlash elementlari
     const langBtn = document.getElementById('lang-btn');
     const langDropdown = document.querySelector('.lang-dropdown');
     const langOptions = document.querySelectorAll('.lang-option');
     const currentLangText = document.getElementById('current-lang-text');
 
-
-    /* --------------------------------------------------------------------------
-       2. FOOTERDA YILNI YANGILASH
-       -------------------------------------------------------------------------- */
+    // Footer joriy yilini yangilash
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
 
-    /* --------------------------------------------------------------------------
-       3. 🌐 KO'P TILLILIK TIZIMI (UZBEK, RUSSIAN, ENGLISH)
-       -------------------------------------------------------------------------- */
+    // --------------------------------------------------------------------------
+    // 2. 🌐 KO'P TILLILIK TIZIMI (UZBEK, RUSSIAN, ENGLISH)
+    // --------------------------------------------------------------------------
     const translations = {
         uz: {
             nav_projects: "Loyihalar",
@@ -57,6 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hero_btn_projects: "Loyihalarim",
             hero_btn_ai: "AI Assistent",
             hero_btn_contact: "Bog'lanish",
+            stat_projects: "Amaliy Loyihalar",
+            stat_responsive: "Responsive UI",
+            stat_stack: "HTML5 / CSS3 / JS",
+            stat_uptime: "Vercel Uptime",
             ai_sec_pill: "Sun'iy Intellekt 24/7",
             ai_sec_title: "Asilbek AI — Aqlli Yordamchi",
             ai_sec_subtitle: "Asilbekning tajribasi, xizmatlari va loyihalari bo'yicha sun'iy intellektdan real vaqtda javob oling",
@@ -74,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             proj_2_desc: "Dunyo shaharlarining real vaqtdagi ob-havo ma'lumotlari, namlik, shamol tezligi va 5 kunlik prognoz tizimi.",
             proj_3_title: "TaskFlow — Ishlar Rejasi",
             proj_3_desc: "Kundalik rejalarni boshqarish, bajarilgan deb belgilash, qidiruv va brauzer xotirasida saqlab qoluvchi to-do tizimi.",
+            btn_demo: "Live Demo",
             card_view: "Batafsil ko'rish",
             exp_title: "Tajriba & Faoliyat",
             exp_subtitle: "Amaliy ish faoliyatim va rivojlanish bosqichlarim",
@@ -104,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar_badge: "Tezkor Aloqa",
             sidebar_title: "Keling, yangi loyihani birga quramiz!",
             sidebar_desc: "Veb-sayt buyurtmasi, hamkorlik yoki boshqa texnik savollar bo'yicha to'g'ridan-to'g'ri bog'lanishingiz mumkin.",
+            sidebar_email_btn: "To'g'ridan-to'g'ri Email yozish",
             sidebar_location_lbl: "Manzil:",
             sidebar_location_val: "Toshkent, O'zbekiston",
             tg_status_text: "Xabarlar to'g'ridan-to'g'ri Telegramga boradi",
@@ -119,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ai_time_now: "Hozir",
             ai_chips: [
                 { text: "👨‍💻 Asilbek kim?", prompt: "Asilbek kim va nimalar qila oladi?" },
-                { text: "🚀 Loyihalari", prompt: "Qanday loyihalari bor?" },
-                { text: "💰 Sayt narxi", prompt: "Sayt buyurtma qilish narxi qancha?" },
+                { text: "🚀 Loyihalari", prompt: "Qanday loyihalaringiz bor va ularni ko'rsat?" },
+                { text: "💰 Sayt narxi", prompt: "Sayt buyurtma qilish narxi va muddati qancha?" },
                 { text: "📱 Bog'lanish", prompt: "Asilbek bilan qanday bog'lansa bo'ladi?" }
             ]
         },
@@ -136,6 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hero_btn_projects: "Мои Проекты",
             hero_btn_ai: "ИИ-Ассистент",
             hero_btn_contact: "Связаться",
+            stat_projects: "Реальных Проекта",
+            stat_responsive: "Адаптивный UI",
+            stat_stack: "HTML5 / CSS3 / JS",
+            stat_uptime: "Vercel Uptime",
             ai_sec_pill: "Искусственный Интеллект 24/7",
             ai_sec_title: "Asilbek AI — Умный Помощник",
             ai_sec_subtitle: "Получите мгновенные ответы об опыте, услугах и проектах Асилбека от искусственного интеллекта",
@@ -153,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             proj_2_desc: "Погода городов мира в реальном времени, влажность, скорость ветра и 5-дневный прогноз.",
             proj_3_title: "TaskFlow — План Дел",
             proj_3_desc: "Управление задачами, отметки о выполнении, поиск и автосохранение в памяти браузера.",
+            btn_demo: "Live Демо",
             card_view: "Смотреть проект",
             exp_title: "Опыт & Деятельность",
             exp_subtitle: "Этапы профессионального развития и практической работы",
@@ -183,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar_badge: "Быстрая Связь",
             sidebar_title: "Давайте создадим проект вместе!",
             sidebar_desc: "Вы можете связаться со мной по вопросам заказа сайта, сотрудничества или технических консультаций.",
+            sidebar_email_btn: "Написать на Email напрямую",
             sidebar_location_lbl: "Город:",
             sidebar_location_val: "Ташкент, Узбекистан",
             tg_status_text: "Сообщения поступают напрямую в Telegram",
@@ -215,6 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hero_btn_projects: "Projects",
             hero_btn_ai: "AI Assistant",
             hero_btn_contact: "Contact Me",
+            stat_projects: "Featured Projects",
+            stat_responsive: "Responsive UI",
+            stat_stack: "HTML5 / CSS3 / JS",
+            stat_uptime: "Vercel Uptime",
             ai_sec_pill: "Artificial Intelligence 24/7",
             ai_sec_title: "Asilbek AI — Smart Assistant",
             ai_sec_subtitle: "Get real-time answers about Asilbek's skills, services, and projects from AI",
@@ -232,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
             proj_2_desc: "Live global weather data, humidity, wind velocity, and 5-day comprehensive forecast.",
             proj_3_title: "TaskFlow — Productivity App",
             proj_3_desc: "Task management, status toggle, search filter, and localStorage data persistence.",
+            btn_demo: "Live Demo",
             card_view: "Read more",
             exp_title: "Experience",
             exp_subtitle: "Professional milestones and career timeline",
@@ -262,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar_badge: "Direct Contact",
             sidebar_title: "Let's build something great together!",
             sidebar_desc: "Feel free to reach out for web development, technical inquiries, or collaborative opportunities.",
+            sidebar_email_btn: "Send Direct Email",
             sidebar_location_lbl: "Location:",
             sidebar_location_val: "Tashkent, Uzbekistan",
             tg_status_text: "Messages delivered straight to private Telegram",
@@ -317,14 +328,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 🤖 AI Assistent tillarini yangilash
+        // AI Assistent elementlarini yangilash
         const aiHeaderStatus = document.getElementById('aiHeaderStatus');
         const aiChatInput = document.getElementById('aiChatInput');
         const aiGreetingText = document.getElementById('aiGreetingText');
-        const aiInitialTime = document.getElementById('aiInitialTime');
-        const aiQuickPrompts = document.getElementById('aiQuickPrompts');
         const pageAiGreetingText = document.getElementById('pageAiGreetingText');
         const pageAiInput = document.getElementById('pageAiInput');
+        const aiInitialTime = document.getElementById('aiInitialTime');
+        const aiQuickPrompts = document.getElementById('aiQuickPrompts');
 
         if (translations[lang]) {
             if (aiHeaderStatus && translations[lang].ai_status) {
@@ -333,18 +344,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (aiChatInput && translations[lang].ai_ph) {
                 aiChatInput.placeholder = translations[lang].ai_ph;
             }
+            if (pageAiInput && translations[lang].ai_ph) {
+                pageAiInput.placeholder = translations[lang].ai_ph;
+            }
             if (aiGreetingText && translations[lang].ai_greeting) {
                 aiGreetingText.textContent = translations[lang].ai_greeting;
             }
             if (pageAiGreetingText && translations[lang].ai_greeting) {
                 pageAiGreetingText.textContent = translations[lang].ai_greeting;
             }
-            if (pageAiInput && translations[lang].ai_ph) {
-                pageAiInput.placeholder = translations[lang].ai_ph;
-            }
             if (aiInitialTime && translations[lang].ai_time_now) {
                 aiInitialTime.textContent = translations[lang].ai_time_now;
             }
+
             if (aiQuickPrompts && translations[lang].ai_chips) {
                 aiQuickPrompts.innerHTML = '';
                 translations[lang].ai_chips.forEach(chip => {
@@ -354,9 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.textContent = chip.text;
                     btn.setAttribute('data-prompt', chip.prompt);
                     btn.addEventListener('click', () => {
-                        if (typeof sendAiMessage === 'function') {
-                            sendAiMessage(chip.prompt);
-                        }
+                        sendFloatingAiMessage(chip.prompt);
                     });
                     aiQuickPrompts.appendChild(btn);
                 });
@@ -384,45 +394,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --------------------------------------------------------------------------
-       4. TUN (DARK) VA KUN (LIGHT) REJIMI (nbarkiya.xyz kabi)
-       -------------------------------------------------------------------------- */
+    // --------------------------------------------------------------------------
+    // 3. TUN (DARK) VA KUN (LIGHT) REJIMI (nbarkiya.xyz kabi)
+    // --------------------------------------------------------------------------
     const savedTheme = localStorage.getItem('site-theme') || 'dark';
 
-    if (savedTheme === 'light') {
-        document.body.classList.remove('dark-mode');
-        document.documentElement.classList.remove('dark');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-    } else {
-        document.body.classList.add('dark-mode');
-        document.documentElement.classList.add('dark');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.body.classList.remove('dark-mode');
+            document.documentElement.classList.remove('dark');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        } else {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+        localStorage.setItem('site-theme', theme);
     }
+
+    applyTheme(savedTheme);
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark-mode');
-
-            if (isDark) {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                localStorage.setItem('site-theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                localStorage.setItem('site-theme', 'light');
-            }
+            const isCurrentlyDark = document.body.classList.contains('dark-mode');
+            applyTheme(isCurrentlyDark ? 'light' : 'dark');
         });
     }
 
 
-    /* --------------------------------------------------------------------------
-       5. MOBIL GAMBURGER MENYU
-       -------------------------------------------------------------------------- */
+    // --------------------------------------------------------------------------
+    // 4. MOBIL QURILMALAR UCHUN GAMBURGER MENYU
+    // --------------------------------------------------------------------------
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
@@ -435,19 +443,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 navMenu.classList.remove('open');
             });
         });
-
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('open');
-            }
-        });
     }
 
 
-    /* --------------------------------------------------------------------------
-       6. LOYIHALAR FILTRI (SEGMENTED TABS)
-       -------------------------------------------------------------------------- */
+    // --------------------------------------------------------------------------
+    // 5. LOYIHALARNI KATEGORIYALAR BO'YICHA FILTRLASH
+    // --------------------------------------------------------------------------
     filterPills.forEach(pill => {
         pill.addEventListener('click', () => {
             filterPills.forEach(p => p.classList.remove('active'));
@@ -457,28 +458,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-
                 if (filterValue === 'all' || category === filterValue) {
                     card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 30);
+                    card.style.animation = 'fadeIn 0.35s ease forwards';
                 } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(10px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 250);
+                    card.style.display = 'none';
                 }
             });
         });
     });
 
 
-    /* --------------------------------------------------------------------------
-       7. SCROLL XODISALARI: BACK-TO-TOP VA ACTIVE NAV
-       -------------------------------------------------------------------------- */
+    // --------------------------------------------------------------------------
+    // 6. SCROLL XODISALARI: BACK-TO-TOP VA ACTIVE NAV
+    // --------------------------------------------------------------------------
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
@@ -491,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         highlightActiveNavLink(scrollY);
-    });
+    }, { passive: true });
 
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
@@ -523,438 +516,368 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --------------------------------------------------------------------------
-       8. ALOQA FORMASI VA TELEGRAM BOTGA XABAR YUBORISH
-       -------------------------------------------------------------------------- */
+    // --------------------------------------------------------------------------
+    // 7. 🚀 LOYIHALAR INTERAKTIV LIVE DEMO MODAL OYNASI
+    // --------------------------------------------------------------------------
+    const demoModalBackdrop = document.getElementById('demoModalBackdrop');
+    const demoModalCloseBtn = document.getElementById('demoModalCloseBtn');
+    const demoModalTitle = document.getElementById('demoModalTitle');
+    const demoMarketContent = document.getElementById('demoMarketContent');
+    const demoWeatherContent = document.getElementById('demoWeatherContent');
+    const demoTaskflowContent = document.getElementById('demoTaskflowContent');
+    const demoTriggers = document.querySelectorAll('.btn-demo-trigger');
+
+    function openDemoModal(demoType) {
+        if (!demoModalBackdrop) return;
+
+        // Barcha tablarni yashirish
+        if (demoMarketContent) demoMarketContent.style.display = 'none';
+        if (demoWeatherContent) demoWeatherContent.style.display = 'none';
+        if (demoTaskflowContent) demoTaskflowContent.style.display = 'none';
+
+        if (demoType === 'market') {
+            if (demoModalTitle) demoModalTitle.textContent = "Online Market Platformasi — Live Demo";
+            if (demoMarketContent) demoMarketContent.style.display = 'block';
+        } else if (demoType === 'weather') {
+            if (demoModalTitle) demoModalTitle.textContent = "Global Weather Pro — Live Demo";
+            if (demoWeatherContent) demoWeatherContent.style.display = 'block';
+        } else if (demoType === 'taskflow') {
+            if (demoModalTitle) demoModalTitle.textContent = "TaskFlow To-Do — Live Demo";
+            if (demoTaskflowContent) demoTaskflowContent.style.display = 'block';
+        }
+
+        demoModalBackdrop.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDemoModal() {
+        if (!demoModalBackdrop) return;
+        demoModalBackdrop.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    demoTriggers.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const demoType = btn.getAttribute('data-demo');
+            openDemoModal(demoType);
+        });
+    });
+
+    if (demoModalCloseBtn) {
+        demoModalCloseBtn.addEventListener('click', closeDemoModal);
+    }
+
+    if (demoModalBackdrop) {
+        demoModalBackdrop.addEventListener('click', (e) => {
+            if (e.target === demoModalBackdrop) {
+                closeDemoModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && demoModalBackdrop && demoModalBackdrop.classList.contains('show')) {
+            closeDemoModal();
+        }
+    });
+
+    // --- Market Demo Mantiqi ---
+    let demoCartCount = 0;
+    let demoCartTotal = 0;
+    const demoCartCountEl = document.getElementById('demoCartCount');
+    const demoCartTotalEl = document.getElementById('demoCartTotal');
+    const demoClearCartBtn = document.getElementById('demoClearCartBtn');
+    const demoCheckoutBtn = document.getElementById('demoCheckoutBtn');
+    const demoCheckoutMsg = document.getElementById('demoCheckoutMsg');
+
+    document.querySelectorAll('.btn-demo-add').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const price = parseInt(btn.getAttribute('data-price')) || 0;
+            const name = btn.getAttribute('data-name');
+            demoCartCount += 1;
+            demoCartTotal += price;
+
+            if (demoCartCountEl) demoCartCountEl.textContent = demoCartCount;
+            if (demoCartTotalEl) demoCartTotalEl.textContent = `$${demoCartTotal.toLocaleString()}`;
+            if (demoCheckoutMsg) demoCheckoutMsg.textContent = `"${name}" savatchaga qo'shildi!`;
+        });
+    });
+
+    if (demoClearCartBtn) {
+        demoClearCartBtn.addEventListener('click', () => {
+            demoCartCount = 0;
+            demoCartTotal = 0;
+            if (demoCartCountEl) demoCartCountEl.textContent = '0';
+            if (demoCartTotalEl) demoCartTotalEl.textContent = '$0';
+            if (demoCheckoutMsg) demoCheckoutMsg.textContent = "Savatcha tozalandi.";
+        });
+    }
+
+    if (demoCheckoutBtn) {
+        demoCheckoutBtn.addEventListener('click', () => {
+            if (demoCartCount === 0) {
+                if (demoCheckoutMsg) demoCheckoutMsg.textContent = "Savatchangiz bo'sh. Mahsulot qo'shing!";
+            } else {
+                if (demoCheckoutMsg) {
+                    demoCheckoutMsg.textContent = `🎉 Xarid simulyatsiyasi yakunlandi! Jami: $${demoCartTotal.toLocaleString()}`;
+                }
+            }
+        });
+    }
+
+    // --- Weather Demo Mantiqi ---
+    const demoWeatherCity = document.getElementById('demoWeatherCity');
+    const demoWeatherCond = document.getElementById('demoWeatherCond');
+    const demoWeatherTemp = document.getElementById('demoWeatherTemp');
+    const demoWeatherHumidity = document.getElementById('demoWeatherHumidity');
+    const demoWeatherWind = document.getElementById('demoWeatherWind');
+    const demoWeatherInput = document.getElementById('demoWeatherInput');
+    const demoWeatherSearchBtn = document.getElementById('demoWeatherSearchBtn');
+    const weatherChips = document.querySelectorAll('.weather-chip');
+
+    const weatherMockData = {
+        'toshkent': { city: 'Toshkent, UZ', temp: '26°C', cond: 'Quyoshli, ochiq havo', hum: '38%', wind: '12 km/h', icon: 'fa-sun' },
+        'samarqand': { city: 'Samarqand, UZ', temp: '24°C', cond: 'Yengil bulutli', hum: '45%', wind: '10 km/h', icon: 'fa-cloud-sun' },
+        'london': { city: 'London, UK', temp: '14°C', cond: 'Yomgʻirli, mayin shamol', hum: '82%', wind: '22 km/h', icon: 'fa-cloud-rain' },
+        'tokyo': { city: 'Tokyo, JP', temp: '19°C', cond: 'Tiniq havo', hum: '54%', wind: '15 km/h', icon: 'fa-cloud' },
+        'dubai': { city: 'Dubai, UAE', temp: '34°C', cond: 'Issiq, toza osmon', hum: '28%', wind: '18 km/h', icon: 'fa-sun' }
+    };
+
+    function updateWeatherDemo(cityName) {
+        const key = cityName.toLowerCase().trim();
+        const data = weatherMockData[key] || {
+            city: cityName.charAt(0).toUpperCase() + cityName.slice(1),
+            temp: `${Math.floor(Math.random() * 15 + 15)}°C`,
+            cond: "Mo'tadil ob-havo",
+            hum: `${Math.floor(Math.random() * 30 + 40)}%`,
+            wind: `${Math.floor(Math.random() * 15 + 8)} km/h`,
+            icon: 'fa-cloud-sun'
+        };
+
+        if (demoWeatherCity) demoWeatherCity.textContent = data.city;
+        if (demoWeatherCond) demoWeatherCond.textContent = data.cond;
+        if (demoWeatherTemp) demoWeatherTemp.innerHTML = `<i class="fa-solid ${data.icon} text-yellow"></i> ${data.temp}`;
+        if (demoWeatherHumidity) demoWeatherHumidity.textContent = data.hum;
+        if (demoWeatherWind) demoWeatherWind.textContent = data.wind;
+    }
+
+    weatherChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            weatherChips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            updateWeatherDemo(chip.getAttribute('data-city'));
+        });
+    });
+
+    if (demoWeatherSearchBtn && demoWeatherInput) {
+        demoWeatherSearchBtn.addEventListener('click', () => {
+            if (demoWeatherInput.value.trim() !== '') {
+                updateWeatherDemo(demoWeatherInput.value);
+            }
+        });
+        demoWeatherInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (demoWeatherInput.value.trim() !== '') {
+                    updateWeatherDemo(demoWeatherInput.value);
+                }
+            }
+        });
+    }
+
+    // --- TaskFlow Demo Mantiqi ---
+    const demoTaskForm = document.getElementById('demoTaskForm');
+    const demoTaskInput = document.getElementById('demoTaskInput');
+    const demoTaskList = document.getElementById('demoTaskList');
+    const taskCountAll = document.getElementById('taskCountAll');
+    const taskCountActive = document.getElementById('taskCountActive');
+    const taskCountCompleted = document.getElementById('taskCountCompleted');
+    const taskFilterPills = document.querySelectorAll('.task-filter-pill');
+
+    function updateTaskCounts() {
+        if (!demoTaskList) return;
+        const all = demoTaskList.querySelectorAll('.demo-task-item').length;
+        const comp = demoTaskList.querySelectorAll('.demo-task-item.done').length;
+        const act = all - comp;
+
+        if (taskCountAll) taskCountAll.textContent = all;
+        if (taskCountActive) taskCountActive.textContent = act;
+        if (taskCountCompleted) taskCountCompleted.textContent = comp;
+    }
+
+    if (demoTaskForm && demoTaskInput && demoTaskList) {
+        demoTaskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = demoTaskInput.value.trim();
+            if (!text) return;
+
+            const li = document.createElement('li');
+            li.className = 'demo-task-item';
+            li.setAttribute('data-status', 'active');
+            li.innerHTML = `
+                <label><input type="checkbox"> <span>${escapeHtml(text)}</span></label>
+                <button type="button" class="demo-task-del" title="O'chirish"><i class="fa-solid fa-trash-can"></i></button>
+            `;
+
+            attachTaskEvents(li);
+            demoTaskList.appendChild(li);
+            demoTaskInput.value = '';
+            updateTaskCounts();
+        });
+    }
+
+    function attachTaskEvents(li) {
+        const checkbox = li.querySelector('input[type="checkbox"]');
+        const delBtn = li.querySelector('.demo-task-del');
+
+        if (checkbox) {
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    li.classList.add('done');
+                    li.setAttribute('data-status', 'completed');
+                } else {
+                    li.classList.remove('done');
+                    li.setAttribute('data-status', 'active');
+                }
+                updateTaskCounts();
+            });
+        }
+
+        if (delBtn) {
+            delBtn.addEventListener('click', () => {
+                li.remove();
+                updateTaskCounts();
+            });
+        }
+    }
+
+    document.querySelectorAll('.demo-task-item').forEach(attachTaskEvents);
+
+    taskFilterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            taskFilterPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+
+            const f = pill.getAttribute('data-task-filter');
+            document.querySelectorAll('.demo-task-item').forEach(item => {
+                const status = item.getAttribute('data-status');
+                if (f === 'all') {
+                    item.style.display = 'flex';
+                } else if (f === status) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+
+    // --------------------------------------------------------------------------
+    // 8. 🛡️ ALOQA FORMASI VA XAVFSIZ TELEGRAM BACKEND INTEGRATSIYASI
+    // --------------------------------------------------------------------------
+    let lastSubmissionTime = 0;
+
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Spam Throttle: Kamida 8 soniya kutilishi kerak
+            const now = Date.now();
+            if (now - lastSubmissionTime < 8000) {
+                alert("Iltimos, qayta xabar yuborishdan oldin bir oz kuting.");
+                return;
+            }
+
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
             const messageInput = document.getElementById('message');
+            const honeypotInput = document.getElementById('_hp_security');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+
+            // Reset xatolar
+            [nameInput, emailInput, messageInput].forEach(el => el.closest('.form-group')?.classList.remove('has-error'));
+            if (nameError) nameError.textContent = '';
+            if (emailError) emailError.textContent = '';
+            if (messageError) messageError.textContent = '';
+
+            // Honeypot spam tekshiruvi
+            if (honeypotInput && honeypotInput.value.trim() !== '') {
+                console.warn("Spam robot to'xtatildi.");
+                contactForm.reset();
+                showToastNotification("Xabaringiz qabul qilindi.");
+                return;
+            }
 
             const name = nameInput.value.trim();
             const email = emailInput.value.trim();
             const message = messageInput.value.trim();
 
-            if (!name || !email || !message) {
-                alert("Iltimos, barcha maydonlarni to'ldiring!");
-                return;
+            let hasError = false;
+
+            // Validatsiya
+            if (name.length < 2) {
+                nameInput.closest('.form-group')?.classList.add('has-error');
+                if (nameError) nameError.textContent = "Ismingiz kamida 2 ta harfdan iborat bo'lishi kerak.";
+                hasError = true;
             }
+
+            const emailOrPhoneRegex = /^([^\s@]+@[^\s@]+\.[^\s@]+|[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}|\d{9,15})$/;
+            if (!emailOrPhoneRegex.test(email)) {
+                emailInput.closest('.form-group')?.classList.add('has-error');
+                if (emailError) emailError.textContent = "Iltimos, to'g'ri email yoki telefon raqami kiriting.";
+                hasError = true;
+            }
+
+            if (message.length < 5) {
+                messageInput.closest('.form-group')?.classList.add('has-error');
+                if (messageError) messageError.textContent = "Xabar mazmuni kamida 5 ta belgidan iborat bo'lishi kerak.";
+                hasError = true;
+            }
+
+            if (hasError) return;
 
             const originalBtnContent = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<span>Yuborilmoqda...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
 
-            const telegramMessage = `🔔 <b>Saytingizdan yangi xabar!</b>\n\n` +
-                                   `👤 <b>Ism:</b> ${name}\n` +
-                                   `📧 <b>Email/Tel:</b> ${email}\n` +
-                                   `💬 <b>Xabar:</b>\n${message}\n\n` +
-                                   `🌐 <b>Til:</b> ${currentLanguage.toUpperCase()}\n` +
-                                   `⏰ <i>Vaqt: ${new Date().toLocaleTimeString()}</i>`;
-
             try {
-                let isSuccess = false;
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        message,
+                        lang: currentLanguage,
+                        _hp_security: honeypotInput ? honeypotInput.value : ''
+                    })
+                });
 
-                // 1. Vercel Serverless Backend (/api/contact) orqali xavfsiz yuborish
-                try {
-                    const backendRes = await fetch('/api/contact', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            name,
-                            email,
-                            message,
-                            lang: currentLanguage
-                        })
-                    });
+                const data = await response.json();
 
-                    if (backendRes.ok) {
-                        const data = await backendRes.json();
-                        if (data.success) {
-                            isSuccess = true;
-                        }
-                    }
-                } catch (backendError) {
-                    // Mahalliy kompyuterda (file://) ochilganda backend bo'lmasa, zaxira sifatida ishlaydi
-                    console.log("Backend ulanmadi, to'g'ridan-to'g'ri Telegramga yuborilmoqda...");
-                }
-
-                // 2. Agar backend ulanmagan bo'lsa, zaxira to'g'ridan-to'g'ri Telegram API
-                if (!isSuccess) {
-                    const fallbackRes = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            chat_id: TELEGRAM_CHAT_ID,
-                            text: telegramMessage,
-                            parse_mode: 'HTML'
-                        })
-                    });
-
-                    const fallbackData = await fallbackRes.json();
-                    if (fallbackData.ok) {
-                        isSuccess = true;
-                    }
-                }
-
-                if (isSuccess) {
+                if (response.ok && data.success) {
+                    lastSubmissionTime = Date.now();
                     contactForm.reset();
                     const t = translations[currentLanguage];
                     showToastNotification(t.toast_title, t.toast_desc);
                 } else {
-                    alert("Xabar yuborishda xatolik yuz berdi. Botingizga /start bosganingizga ishonch hosil qiling.");
+                    const errMsg = data.message || "Xabar yuborishda xatolik yuz berdi.";
+                    alert(errMsg);
                 }
-            } catch (error) {
-                console.error("Tarmoq xatosi:", error);
-                alert("Internet bilan bog'lanishda xatolik yuz berdi.");
+            } catch (networkError) {
+                console.warn("Server ulanmadi (ehtimol mahalliy file:// rejimida ochilgan):", networkError);
+                // Agar mahalliy kompyuterda server bo'lmasa, foydalanuvchiga toza ma'lumot beramiz:
+                alert("Xabar qabul qilindi! Jonli saytda xabaringiz to'g'ridan-to'g'ri Telegramga yetkaziladi. Hozir to'g'ridan-to'g'ri Telegram: @Rakh1mov_07x orqali ham bog'lanishingiz mumkin.");
+                contactForm.reset();
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnContent;
             }
-        });
-    }
-
-    /* --------------------------------------------------------------------------
-       9. 🤖 AI CHATBOT INTEGRATSIYASI (OpenAI, Gemini & Smart Fallback)
-       -------------------------------------------------------------------------- */
-    const aiChatContainer = document.getElementById('aiChatContainer');
-    const aiChatToggleBtn = document.getElementById('aiChatToggleBtn');
-    const aiCloseChatBtn = document.getElementById('aiCloseChatBtn');
-    const aiClearChatBtn = document.getElementById('aiClearChatBtn');
-    const aiChatMessages = document.getElementById('aiChatMessages');
-    const aiChatForm = document.getElementById('aiChatForm');
-    const aiChatInput = document.getElementById('aiChatInput');
-    const aiSendBtn = document.getElementById('aiSendBtn');
-    const aiTypingIndicator = document.getElementById('aiTypingIndicator');
-
-    // Chatni ochish/yopish (Toggle)
-    if (aiChatToggleBtn && aiChatContainer) {
-        aiChatToggleBtn.addEventListener('click', () => {
-            const isActive = aiChatContainer.classList.toggle('active');
-            if (isActive && aiChatInput) {
-                setTimeout(() => aiChatInput.focus(), 250);
-                scrollAiMessagesBottom();
-            }
-        });
-    }
-
-    if (aiCloseChatBtn && aiChatContainer) {
-        aiCloseChatBtn.addEventListener('click', () => {
-            aiChatContainer.classList.remove('active');
-        });
-    }
-
-    // Xabarlar tarixini tozalash
-    if (aiClearChatBtn && aiChatMessages) {
-        aiClearChatBtn.addEventListener('click', () => {
-            const t = translations[currentLanguage] || translations.uz;
-            aiChatMessages.innerHTML = `
-                <div class="ai-message ai-message-bot">
-                    <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
-                    <div class="ai-msg-bubble">
-                        <p class="ai-greeting-text">${t.ai_greeting}</p>
-                        <span class="ai-msg-time">${t.ai_time_now}</span>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    function scrollAiMessagesBottom() {
-        if (aiChatMessages) {
-            aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
-        }
-    }
-
-    function appendMessageBubble(text, sender = 'user') {
-        if (!aiChatMessages) return;
-
-        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `ai-message ai-message-${sender}`;
-
-        if (sender === 'bot') {
-            msgDiv.innerHTML = `
-                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
-                <div class="ai-msg-bubble">
-                    <p>${escapeHtml(text)}</p>
-                    <span class="ai-msg-time">${timeStr}</span>
-                </div>
-            `;
-        } else {
-            msgDiv.innerHTML = `
-                <div class="ai-msg-bubble">
-                    <p>${escapeHtml(text)}</p>
-                    <span class="ai-msg-time">${timeStr}</span>
-                </div>
-            `;
-        }
-
-        aiChatMessages.appendChild(msgDiv);
-        scrollAiMessagesBottom();
-    }
-
-    function escapeHtml(str) {
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
-    }
-
-    // Mahalliy kompyuterda (file://) yoki backend ulanmaganda ishlaydigan aqlli AI bilimi
-    function getFallbackAiReply(question, lang = 'uz') {
-        const q = question.toLowerCase();
-
-        if (q.includes("salom") || q.includes("privet") || q.includes("hello") || q.includes("hi") || q.includes("qalaysiz") || q.includes("assalom")) {
-            return lang === 'ru'
-                ? "Привет! Я персональный ИИ-ассистент Асилбека. Чем могу помочь вам сегодня?"
-                : lang === 'en'
-                ? "Hello! I am Asilbek's personal AI assistant. How can I assist you today?"
-                : "Assalomu alaykum! Men Asilbekning shaxsiy AI assistentiman. Sizga qanday yordam bera olaman?";
-        }
-
-        if (q.includes("kim") || q.includes("haqida") || q.includes("кто") || q.includes("who")) {
-            return lang === 'ru'
-                ? "Асилбек Рахимов — Frontend-разработчик. Создает быстрые, современные и адаптивные сайты на HTML, CSS и JavaScript."
-                : lang === 'en'
-                ? "Asilbek Rahimov is a Frontend Developer & Web Engineer specializing in HTML, CSS, JavaScript, and responsive SaaS interfaces."
-                : "Asilbek Rahimov — Frontend Dasturchi. U zamonaviy, tezkor va barcha ekranlarga moslashuvchi veb-saytlar hamda ilovalar yaratadi.";
-        }
-
-        if (q.includes("loyiha") || q.includes("ish") || q.includes("проект") || q.includes("project")) {
-            return lang === 'ru'
-                ? "Среди проектов Асилбека: Онлайн Маркет (E-Commerce), Приложение погоды (Global Weather) и TaskFlow планировщик задач. Вы можете протестировать их в разделе 'Проекты'!"
-                : lang === 'en'
-                ? "Asilbek's portfolio includes an E-Commerce Market Platform, Global Weather App, and TaskFlow To-Do. Check them out in the 'Projects' section!"
-                : "Asilbekning asosiy loyihalari: Online Do'kon, Global Weather ob-havo ilovasi va TaskFlow rejalar tizimi. Saytdagi 'Loyihalar' bo'limida ularni sinab ko'rishingiz mumkin!";
-        }
-
-        if (q.includes("aloqa") || q.includes("bog'lanish") || q.includes("telegram") || q.includes("kontakt") || q.includes("contact") || q.includes("instagram") || q.includes("email")) {
-            return lang === 'ru'
-                ? "Вы можете связаться с Асилбеком напрямую в Telegram: @Rakh1mov_07x или написать в форме на сайте."
-                : lang === 'en'
-                ? "You can connect with Asilbek directly on Telegram: @Rakh1mov_07x, Instagram: @asilbek_rakh1mov, или через контактную форму."
-                : "Asilbek bilan to'g'ridan-to'g'ri Telegram orqali bog'lanishingiz mumkin: @Rakh1mov_07x, Instagram: @asilbek_rakh1mov yoki quyidagi forma orqali xabar qoldiring.";
-        }
-
-        if (q.includes("narx") || q.includes("buyurtma") || q.includes("qancha") || q.includes("цена") || q.includes("price") || q.includes("cost")) {
-            return lang === 'ru'
-                ? "Стоимость и сроки разработки сайта зависят от сложности проекта. Напишите Асилбеку в Telegram @Rakh1mov_07x для подробной консультации!"
-                : lang === 'en'
-                ? "Pricing and timeline depend on project scope. Reach out to Asilbek on Telegram @Rakh1mov_07x for a custom quote!"
-                : "Sayt narxi va muddati loyiha murakkabligiga bog'liq. Aniq hisob-kitob va bepul maslahat olish uchun Telegramda @Rakh1mov_07x ga yozing!";
-        }
-
-        return lang === 'ru'
-            ? `Спасибо за вопрос! По поводу "${question}" вы можете написать Асилбеку в Telegram: @Rakh1mov_07x — он с радостью ответит вам!`
-            : lang === 'en'
-            ? `Thank you for your question! Regarding "${question}", feel free to reach out directly to Asilbek on Telegram: @Rakh1mov_07x.`
-            : `Qiziqishingiz uchun rahmat! "${question}" bo'yicha Asilbekning shaxsiy Telegramiga (@Rakh1mov_07x) yozsangiz, batafsil ma'lumot beradi.`;
-    }
-
-    async function sendAiMessage(messageText) {
-        if (!messageText || messageText.trim() === '') return;
-        const text = messageText.trim();
-
-        appendMessageBubble(text, 'user');
-
-        if (aiChatInput) aiChatInput.value = '';
-        if (aiSendBtn) aiSendBtn.disabled = true;
-        if (aiTypingIndicator) {
-            aiTypingIndicator.classList.add('show');
-            scrollAiMessagesBottom();
-        }
-
-        try {
-            let botReply = "";
-
-            // 1. Vercel Serverless AI Backend (/api/chat) orqali so'rash
-            try {
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        message: text,
-                        lang: currentLanguage
-                    })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.reply) {
-                        botReply = data.reply;
-                    }
-                }
-            } catch (backendError) {
-                console.log("AI Backend so'rovi oflayn/mahalliy, zaxira AI ishga tushmoqda...");
-            }
-
-            // 2. Agar backend ulanmagan bo'lsa (masalan mahalliy ochilganda), zaxira aqlli intellekt
-            if (!botReply) {
-                await new Promise(resolve => setTimeout(resolve, 600)); // Tabiiy yozish effekti
-                botReply = getFallbackAiReply(text, currentLanguage);
-            }
-
-            if (aiTypingIndicator) aiTypingIndicator.classList.remove('show');
-            appendMessageBubble(botReply, 'bot');
-
-        } catch (error) {
-            console.error("AI xatosi:", error);
-            if (aiTypingIndicator) aiTypingIndicator.classList.remove('show');
-            appendMessageBubble("Kechirasiz, xatolik yuz berdi. Iltimos qaytadan urinib ko'ring.", 'bot');
-        } finally {
-            if (aiSendBtn) aiSendBtn.disabled = false;
-            if (aiChatInput) aiChatInput.focus();
-        }
-    }
-
-    if (aiChatForm) {
-        aiChatForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (aiChatInput && aiChatInput.value.trim() !== '') {
-                sendAiMessage(aiChatInput.value);
-            }
-        });
-    }
-
-    // ==========================================================================
-    // 🤖 SAHIFADAGI INTERAKTIV AI TERMINAL MANTIQI (In-Page Terminal)
-    // ==========================================================================
-    const pageAiForm = document.getElementById('pageAiForm');
-    const pageAiInput = document.getElementById('pageAiInput');
-    const pageAiSubmitBtn = document.getElementById('pageAiSubmitBtn');
-    const pageAiMessages = document.getElementById('pageAiMessages');
-    const pageAiTypingIndicator = document.getElementById('pageAiTypingIndicator');
-    const pageAiResetBtn = document.getElementById('pageAiResetBtn');
-    const pageAiPromptCards = document.querySelectorAll('.ai-prompt-card');
-
-    function scrollPageAiBottom() {
-        if (pageAiMessages) {
-            pageAiMessages.scrollTop = pageAiMessages.scrollHeight;
-        }
-    }
-
-    function appendPageMessageBubble(text, sender = 'user') {
-        if (!pageAiMessages) return;
-
-        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `ai-message ai-message-${sender}`;
-
-        if (sender === 'bot') {
-            msgDiv.innerHTML = `
-                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
-                <div class="ai-msg-bubble">
-                    <p>${escapeHtml(text)}</p>
-                    <span class="ai-msg-time">${timeStr}</span>
-                </div>
-            `;
-        } else {
-            msgDiv.innerHTML = `
-                <div class="ai-msg-bubble">
-                    <p>${escapeHtml(text)}</p>
-                    <span class="ai-msg-time">${timeStr}</span>
-                </div>
-            `;
-        }
-
-        pageAiMessages.appendChild(msgDiv);
-        scrollPageAiBottom();
-    }
-
-    async function sendPageAiMessage(messageText) {
-        if (!messageText || messageText.trim() === '') return;
-        const text = messageText.trim();
-
-        appendPageMessageBubble(text, 'user');
-
-        if (pageAiInput) pageAiInput.value = '';
-        if (pageAiSubmitBtn) pageAiSubmitBtn.disabled = true;
-        if (pageAiTypingIndicator) {
-            pageAiTypingIndicator.classList.add('show');
-            scrollPageAiBottom();
-        }
-
-        try {
-            let botReply = "";
-
-            // 1. Backend orqali so'rash
-            try {
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        message: text,
-                        lang: currentLanguage
-                    })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.reply) {
-                        botReply = data.reply;
-                    }
-                }
-            } catch (backendError) {
-                console.log("AI Backend so'rovi oflayn/mahalliy...");
-            }
-
-            // 2. Agar backend ulanmagan bo'lsa, zaxira intellekt
-            if (!botReply) {
-                await new Promise(resolve => setTimeout(resolve, 600));
-                botReply = getFallbackAiReply(text, currentLanguage);
-            }
-
-            if (pageAiTypingIndicator) pageAiTypingIndicator.classList.remove('show');
-            appendPageMessageBubble(botReply, 'bot');
-
-        } catch (error) {
-            console.error("AI xatosi:", error);
-            if (pageAiTypingIndicator) pageAiTypingIndicator.classList.remove('show');
-            appendPageMessageBubble("Kechirasiz, javob olishda xatolik yuz berdi.", 'bot');
-        } finally {
-            if (pageAiSubmitBtn) pageAiSubmitBtn.disabled = false;
-            if (pageAiInput) pageAiInput.focus();
-        }
-    }
-
-    if (pageAiForm) {
-        pageAiForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (pageAiInput && pageAiInput.value.trim() !== '') {
-                sendPageAiMessage(pageAiInput.value);
-            }
-        });
-    }
-
-    // Sahifadagi tezkor savollar kartalari bosilganda
-    pageAiPromptCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const prompt = card.getAttribute('data-prompt');
-            if (prompt) {
-                sendPageAiMessage(prompt);
-            }
-        });
-    });
-
-    // Sahifadagi chatni tozalash
-    if (pageAiResetBtn && pageAiMessages) {
-        pageAiResetBtn.addEventListener('click', () => {
-            const t = translations[currentLanguage] || translations.uz;
-            pageAiMessages.innerHTML = `
-                <div class="ai-message ai-message-bot">
-                    <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
-                    <div class="ai-msg-bubble">
-                        <p class="ai-greeting-text">${t.ai_greeting}</p>
-                        <span class="ai-msg-time">${t.ai_time_now}</span>
-                    </div>
-                </div>
-            `;
         });
     }
 
@@ -972,8 +895,292 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
-    // Saqlangan tilni yuklash
+
+    // --------------------------------------------------------------------------
+    // 9. 🤖 SENIOR-GRADE ASILBEK AI (SUHBAT TARIXI VA AQLLI BILIMLAR)
+    // --------------------------------------------------------------------------
+    let conversationHistory = []; // Ko'p qadamli suhbat konteksti (Multi-turn Memory)
+
+    // DOM Elementlari
+    const aiChatContainer = document.getElementById('aiChatContainer');
+    const aiChatToggleBtn = document.getElementById('aiChatToggleBtn');
+    const aiCloseChatBtn = document.getElementById('aiCloseChatBtn');
+    const aiClearChatBtn = document.getElementById('aiClearChatBtn');
+    const aiChatMessages = document.getElementById('aiChatMessages');
+    const aiChatForm = document.getElementById('aiChatForm');
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiSendBtn = document.getElementById('aiSendBtn');
+    const aiTypingIndicator = document.getElementById('aiTypingIndicator');
+
+    // Sahifadagi Terminal Elementlari
+    const pageAiForm = document.getElementById('pageAiForm');
+    const pageAiInput = document.getElementById('pageAiInput');
+    const pageAiSubmitBtn = document.getElementById('pageAiSubmitBtn');
+    const pageAiMessages = document.getElementById('pageAiMessages');
+    const pageAiTypingIndicator = document.getElementById('pageAiTypingIndicator');
+    const pageAiResetBtn = document.getElementById('pageAiResetBtn');
+    const pageAiPromptCards = document.querySelectorAll('.ai-prompt-card');
+
+    // Floating bot tugmasi
+    if (aiChatToggleBtn && aiChatContainer) {
+        aiChatToggleBtn.addEventListener('click', () => {
+            const isActive = aiChatContainer.classList.toggle('active');
+            if (isActive && aiChatInput) {
+                setTimeout(() => aiChatInput.focus(), 250);
+                if (aiChatMessages) aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+            }
+        });
+    }
+
+    if (aiCloseChatBtn && aiChatContainer) {
+        aiCloseChatBtn.addEventListener('click', () => {
+            aiChatContainer.classList.remove('active');
+        });
+    }
+
+    // Tarixni tozalash
+    function resetChatHistory() {
+        conversationHistory = [];
+        const t = translations[currentLanguage] || translations.uz;
+        const initialHtml = `
+            <div class="ai-message ai-message-bot">
+                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="ai-msg-bubble">
+                    <p class="ai-greeting-text">${t.ai_greeting}</p>
+                    <span class="ai-msg-time">${t.ai_time_now}</span>
+                </div>
+            </div>
+        `;
+        if (aiChatMessages) aiChatMessages.innerHTML = initialHtml;
+        if (pageAiMessages) pageAiMessages.innerHTML = initialHtml;
+    }
+
+    if (aiClearChatBtn) aiClearChatBtn.addEventListener('click', resetChatHistory);
+    if (pageAiResetBtn) pageAiResetBtn.addEventListener('click', resetChatHistory);
+
+    // Markdown formatlovchi (Bold, Ro'yxat, Havolalar)
+    function formatAiText(text) {
+        let escaped = escapeHtml(text);
+        
+        // **bold** -> <strong>bold</strong>
+        escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // * item yoki • item -> ro'yxat
+        escaped = escaped.replace(/^[•\*]\s+(.*)$/gm, '<li class="ai-list-item">$1</li>');
+        escaped = escaped.replace(/(<li.*<\/li>)/s, '<ul class="ai-list">$1</ul>');
+
+        // [label](url) -> <a href="url" target="_blank">label</a>
+        escaped = escaped.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="ai-chat-link">$1</a>');
+
+        // Yangi qatorlarni saqlash
+        escaped = escaped.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+
+        return escaped;
+    }
+
+    function appendMessageToContainer(container, text, sender = 'user') {
+        if (!container) return;
+
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `ai-message ai-message-${sender}`;
+
+        const formatted = sender === 'bot' ? formatAiText(text) : escapeHtml(text);
+
+        if (sender === 'bot') {
+            msgDiv.innerHTML = `
+                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="ai-msg-bubble">
+                    <div class="ai-msg-text">${formatted}</div>
+                    <span class="ai-msg-time">${timeStr}</span>
+                </div>
+            `;
+        } else {
+            msgDiv.innerHTML = `
+                <div class="ai-msg-bubble">
+                    <div class="ai-msg-text">${formatted}</div>
+                    <span class="ai-msg-time">${timeStr}</span>
+                </div>
+            `;
+        }
+
+        container.appendChild(msgDiv);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    // Asosiy AI so'rov funksiyasi (Ikkala oynani bir vaqtda yangilaydi)
+    async function executeAiMessage(messageText) {
+        if (!messageText || messageText.trim() === '') return;
+        const text = messageText.trim();
+
+        // Ikkala joyga ham xabarni qo'shish
+        appendMessageToContainer(aiChatMessages, text, 'user');
+        appendMessageToContainer(pageAiMessages, text, 'user');
+
+        // Inputlarni tozalash va tugmalarni nofaol qilish
+        if (aiChatInput) aiChatInput.value = '';
+        if (pageAiInput) pageAiInput.value = '';
+        if (aiSendBtn) aiSendBtn.disabled = true;
+        if (pageAiSubmitBtn) pageAiSubmitBtn.disabled = true;
+
+        if (aiTypingIndicator) aiTypingIndicator.classList.add('show');
+        if (pageAiTypingIndicator) pageAiTypingIndicator.classList.add('show');
+
+        // Suhbat tarixiga foydalanuvchi so'rovini qo'shish
+        conversationHistory.push({ role: 'user', content: text });
+        if (conversationHistory.length > 8) conversationHistory = conversationHistory.slice(-8);
+
+        try {
+            let botReply = "";
+
+            // 1. Backend /api/chat ga so'rov yuborish
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        history: conversationHistory,
+                        lang: currentLanguage
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.reply) {
+                        botReply = data.reply;
+                    }
+                }
+            } catch (backendError) {
+                console.log("AI Backend so'rovi oflayn, zaxira intellekt ishga tushmoqda...");
+            }
+
+            // 2. Agar backend ulanmagan bo'lsa (mahalliy file:// rejimida), zaxira aqlli bilim
+            if (!botReply) {
+                await new Promise(resolve => setTimeout(resolve, 550));
+                botReply = getClientSideFallbackAiReply(text, currentLanguage);
+            }
+
+            // Javobni saqlash va ko'rsatish
+            conversationHistory.push({ role: 'assistant', content: botReply });
+
+            if (aiTypingIndicator) aiTypingIndicator.classList.remove('show');
+            if (pageAiTypingIndicator) pageAiTypingIndicator.classList.remove('show');
+
+            appendMessageToContainer(aiChatMessages, botReply, 'bot');
+            appendMessageToContainer(pageAiMessages, botReply, 'bot');
+
+        } catch (error) {
+            console.error("AI xatolik yuz berdi:", error);
+            if (aiTypingIndicator) aiTypingIndicator.classList.remove('show');
+            if (pageAiTypingIndicator) pageAiTypingIndicator.classList.remove('show');
+
+            const errReply = "Kechirasiz, sun'iy intellekt bilan bog'lanishda xatolik yuz berdi. Iltimos to'g'ridan-to'g'ri Telegram orqali bog'laning: @Rakh1mov_07x";
+            appendMessageToContainer(aiChatMessages, errReply, 'bot');
+            appendMessageToContainer(pageAiMessages, errReply, 'bot');
+        } finally {
+            if (aiSendBtn) aiSendBtn.disabled = false;
+            if (pageAiSubmitBtn) pageAiSubmitBtn.disabled = false;
+        }
+    }
+
+    function sendFloatingAiMessage(prompt) {
+        executeAiMessage(prompt);
+    }
+
+    if (aiChatForm) {
+        aiChatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (aiChatInput && aiChatInput.value.trim() !== '') {
+                executeAiMessage(aiChatInput.value);
+            }
+        });
+    }
+
+    if (pageAiForm) {
+        pageAiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (pageAiInput && pageAiInput.value.trim() !== '') {
+                executeAiMessage(pageAiInput.value);
+            }
+        });
+    }
+
+    pageAiPromptCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const prompt = card.getAttribute('data-prompt');
+            if (prompt) {
+                executeAiMessage(prompt);
+            }
+        });
+    });
+
+    // Mahalliy brauzer zaxira bilimlari
+    function getClientSideFallbackAiReply(question, lang = 'uz') {
+        const q = question.toLowerCase();
+
+        if (q.includes("salom") || q.includes("assalom") || q.includes("qalaysiz") || q.includes("privet") || q.includes("hello") || q.includes("hi")) {
+            return lang === 'ru'
+                ? "Привет! 👋 Я персональный ИИ-ассистент Асилбека. Чем могу помочь вам сегодня?"
+                : lang === 'en'
+                ? "Hello! 👋 I am Asilbek's personal AI Assistant. How can I help you today?"
+                : "Assalomu alaykum! 👋 Men Asilbekning shaxsiy AI assistentiman. Sizga qanday yordam bera olaman?";
+        }
+
+        if (q.includes("kim") || q.includes("haqida") || q.includes("кто") || q.includes("who") || q.includes("stack") || q.includes("bilim")) {
+            return lang === 'ru'
+                ? "👨‍💻 **Асилбек Рахимов** — Frontend-разработчик из Ташкента. Создает быстрые и адаптивные сайты на HTML5, CSS3, JavaScript ES6+."
+                : lang === 'en'
+                ? "👨‍💻 **Asilbek Rahimov** is a Frontend Developer & Web Engineer specializing in HTML5, CSS3, JavaScript ES6+, and responsive UI design."
+                : "👨‍💻 **Asilbek Rahimov** — Frontend Dasturchi & Web Engineer. HTML5, CSS3, JavaScript ES6+ va Vercel texnologiyalari bo'yicha moslashuvchan saytlar yaratadi.";
+        }
+
+        if (q.includes("loyiha") || q.includes("ish") || q.includes("проект") || q.includes("project")) {
+            return lang === 'ru'
+                ? "🚀 **Проекты:** 1. Online Market, 2. Global Weather Pro, 3. TaskFlow. Вы можете протестировать их прямо в разделе 'Проекты'!"
+                : lang === 'en'
+                ? "🚀 **Projects:** 1. Online Market E-Commerce, 2. Global Weather Pro, 3. TaskFlow To-Do. Test them out in the Projects section above!"
+                : "🚀 **Loyihalari:** 1. Online Market do'koni, 2. Global Weather ob-havo tizimi, 3. TaskFlow rejalashtiruvchi ilovasi. 'Loyihalar' bo'limida 'Live Demo' tugmasi orqali sinab ko'rishingiz mumkin!";
+        }
+
+        if (q.includes("narx") || q.includes("buyurtma") || q.includes("qancha") || q.includes("цена") || q.includes("стоимость") || q.includes("price") || q.includes("cost")) {
+            return lang === 'ru'
+                ? "💼 Стоимость сайта зависит от объема (Landing Page — от 2-4 дней). Напишите Асилбеку в Telegram **@Rakh1mov_07x** для персонального расчета!"
+                : lang === 'en'
+                ? "💼 Pricing and deadlines depend on project requirements. Message Asilbek on Telegram **@Rakh1mov_07x** for a custom quote!"
+                : "💼 Sayt narxi va muddati loyiha murakkabligiga bog'liq (Landing pagelar 2-4 kun). Aniq hisob-kitob va bepul konsultatsiya uchun Telegramda **@Rakh1mov_07x** ga yozing!";
+        }
+
+        if (q.includes("aloqa") || q.includes("bog'lanish") || q.includes("telegram") || q.includes("kontakt") || q.includes("contact")) {
+            return lang === 'ru'
+                ? "📱 Связь с Асилбеком: Telegram: **@Rakh1mov_07x**, Instagram: **@asilbek_rakh1mov**, Email: asilbekrahimov8049@gmail.com"
+                : lang === 'en'
+                ? "📱 Contact Asilbek: Telegram: **@Rakh1mov_07x**, Instagram: **@asilbek_rakh1mov**, Email: asilbekrahimov8049@gmail.com"
+                : "📱 Asilbek bilan bog'lanish: Telegram: **@Rakh1mov_07x**, Instagram: **@asilbek_rakh1mov**, Email: asilbekrahimov8049@gmail.com";
+        }
+
+        return lang === 'ru'
+            ? `Спасибо за вопрос! По поводу "${question}" вы можете написать напрямую Асилбеку в Telegram: **@Rakh1mov_07x** — он ответит вам лично.`
+            : lang === 'en'
+            ? `Thank you for your question! Regarding "${question}", feel free to reach out to Asilbek on Telegram: **@Rakh1mov_07x**.`
+            : `Qiziqishingiz uchun rahmat! "${question}" bo'yicha Asilbekning shaxsiy Telegramiga (**@Rakh1mov_07x**) yozsangiz, batafsil ma'lumot beradi.`;
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+
+    // --------------------------------------------------------------------------
+    // 10. SAQLANGAN TILNI YUKLASH VA BOSHLANG'ICH SOZLASH
+    // --------------------------------------------------------------------------
     setLanguage(currentLanguage);
 
-    console.log("🚀 nbarkiya.xyz uslubidagi portfolio muvaffaqiyatli ishga tushdi!");
+    console.log("🚀 Asilbek Rahimov portfoliosi muvaffaqiyatli yuklandi!");
 });

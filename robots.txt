@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mening-birinchi-saytim-pi.vercel.app/sitemap.xml
