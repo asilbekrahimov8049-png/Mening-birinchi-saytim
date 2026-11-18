@@ -504,6 +504,83 @@
         </div>
     </footer>
 
+    <!-- ======================================================= -->
+    <!-- 🤖 AI CHATBOT WIDGET (Sun'iy Intellekt Assistent)       -->
+    <!-- ======================================================= -->
+    <div class="ai-chat-container" id="aiChatContainer">
+        <!-- Floating Bot Button -->
+        <button class="ai-chat-toggle-btn" id="aiChatToggleBtn" aria-label="AI Yordamchi bilan suhbat" title="AI Assistent bilan suhbat">
+            <span class="ai-pulse-ring"></span>
+            <span class="ai-btn-inner">
+                <i class="fa-solid fa-robot ai-icon-bot"></i>
+                <i class="fa-solid fa-xmark ai-icon-close"></i>
+            </span>
+            <span class="ai-badge">AI</span>
+        </button>
+
+        <!-- Chat Modal Box -->
+        <div class="ai-chat-box" id="aiChatBox">
+            <!-- Header -->
+            <div class="ai-chat-header">
+                <div class="ai-header-info">
+                    <div class="ai-avatar-wrapper">
+                        <i class="fa-solid fa-robot"></i>
+                        <span class="ai-online-dot"></span>
+                    </div>
+                    <div>
+                        <h4 class="ai-header-name">Asilbek AI</h4>
+                        <p class="ai-header-status" id="aiHeaderStatus">Onlayn • 24/7 yordamchi</p>
+                    </div>
+                </div>
+                <div class="ai-header-actions">
+                    <button class="ai-header-action-btn" id="aiClearChatBtn" title="Tarixni tozalash" aria-label="Tozalash">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <button class="ai-header-action-btn" id="aiCloseChatBtn" title="Yopish" aria-label="Yopish">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages Body -->
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <!-- Bot Greeting -->
+                <div class="ai-message ai-message-bot">
+                    <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="ai-msg-bubble">
+                        <p class="ai-greeting-text" id="aiGreetingText">
+                            Assalomu alaykum! Men Asilbekning aqlli AI assistentiman 🤖. Asilbekning tajribasi, loyihalari yoki veb-sayt buyurtma qilish bo'yicha savollaringiz bo'lsa, marhamat, so'rashingiz mumkin!
+                        </p>
+                        <span class="ai-msg-time" id="aiInitialTime">Hozir</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Suggestions (Chips) -->
+            <div class="ai-quick-prompts" id="aiQuickPrompts">
+                <button class="ai-chip" data-prompt="Asilbek kim va nimalar qila oladi?">👨‍💻 Asilbek kim?</button>
+                <button class="ai-chip" data-prompt="Qanday loyihalaringiz bor?">🚀 Loyihalari</button>
+                <button class="ai-chip" data-prompt="Sayt buyurtma qilish narxi qancha?">💰 Sayt narxi</button>
+                <button class="ai-chip" data-prompt="Asilbek bilan qanday bog'lansa bo'ladi?">📱 Bog'lanish</button>
+            </div>
+
+            <!-- Typing Dots -->
+            <div class="ai-typing-indicator" id="aiTypingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Footer Input -->
+            <form class="ai-chat-footer" id="aiChatForm">
+                <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Savolingizni yozing..." autocomplete="off" required>
+                <button type="submit" class="ai-send-btn" id="aiSendBtn" aria-label="Yuborish">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Asosiy JavaScript faylimiz -->
     <script src="script.js"></script>
 </body>

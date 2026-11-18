@@ -104,7 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_rights: "Barcha huquqlar himoyalangan.",
             ph_name: "Ismingizni kiriting",
             ph_contact: "Email yoki telefon raqamingiz",
-            ph_msg: "Xabaringizni bu yerga yozing..."
+            ph_msg: "Xabaringizni bu yerga yozing...",
+            ai_status: "Onlayn • 24/7 yordamchi",
+            ai_greeting: "Assalomu alaykum! Men Asilbekning aqlli AI assistentiman 🤖. Asilbekning tajribasi, loyihalari yoki veb-sayt buyurtma qilish bo'yicha savollaringiz bo'lsa, marhamat, so'rashingiz mumkin!",
+            ai_ph: "Savolingizni yozing...",
+            ai_time_now: "Hozir",
+            ai_chips: [
+                { text: "👨‍💻 Asilbek kim?", prompt: "Asilbek kim va nimalar qila oladi?" },
+                { text: "🚀 Loyihalari", prompt: "Qanday loyihalari bor?" },
+                { text: "💰 Sayt narxi", prompt: "Sayt buyurtma qilish narxi qancha?" },
+                { text: "📱 Bog'lanish", prompt: "Asilbek bilan qanday bog'lansa bo'ladi?" }
+            ]
         },
         ru: {
             nav_projects: "Проекты",
@@ -165,7 +175,17 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_rights: "Все права защищены.",
             ph_name: "Введите ваше имя",
             ph_contact: "Email или номер телефона",
-            ph_msg: "Напишите ваше сообщение здесь..."
+            ph_msg: "Напишите ваше сообщение здесь...",
+            ai_status: "В сети • 24/7 помощник",
+            ai_greeting: "Здравствуйте! Я умный ИИ-ассистент Асилбека 🤖. Задавайте любые вопросы о навыках, проектах или разработке сайта!",
+            ai_ph: "Задайте ваш вопрос...",
+            ai_time_now: "Сейчас",
+            ai_chips: [
+                { text: "👨‍💻 Кто такой Асилбек?", prompt: "Кто такой Асилбек и что он умеет делать?" },
+                { text: "🚀 Проекты", prompt: "Какие проекты есть у Асилбека?" },
+                { text: "💰 Стоимость сайта", prompt: "Сколько стоит заказать разработку сайта?" },
+                { text: "📱 Контакты", prompt: "Как связаться с Асилбеком?" }
+            ]
         },
         en: {
             nav_projects: "Projects",
@@ -226,7 +246,17 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_rights: "All rights reserved.",
             ph_name: "Enter your full name",
             ph_contact: "Email or phone number",
-            ph_msg: "Write your message here..."
+            ph_msg: "Write your message here...",
+            ai_status: "Online • 24/7 Assistant",
+            ai_greeting: "Hello! I am Asilbek's AI Assistant 🤖. Feel free to ask anything about his skills, projects, or web development services!",
+            ai_ph: "Ask a question...",
+            ai_time_now: "Just now",
+            ai_chips: [
+                { text: "👨‍💻 Who is Asilbek?", prompt: "Who is Asilbek and what can he build?" },
+                { text: "🚀 Projects", prompt: "What projects has Asilbek built?" },
+                { text: "💰 Pricing", prompt: "What is the cost of website development?" },
+                { text: "📱 Contact", prompt: "How can I get in touch with Asilbek?" }
+            ]
         }
     };
 
@@ -262,6 +292,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.setAttribute('placeholder', translations[lang][phKey]);
             }
         });
+
+        // 🤖 AI Assistent tillarini yangilash
+        const aiHeaderStatus = document.getElementById('aiHeaderStatus');
+        const aiChatInput = document.getElementById('aiChatInput');
+        const aiGreetingText = document.getElementById('aiGreetingText');
+        const aiInitialTime = document.getElementById('aiInitialTime');
+        const aiQuickPrompts = document.getElementById('aiQuickPrompts');
+
+        if (translations[lang]) {
+            if (aiHeaderStatus && translations[lang].ai_status) {
+                aiHeaderStatus.textContent = translations[lang].ai_status;
+            }
+            if (aiChatInput && translations[lang].ai_ph) {
+                aiChatInput.placeholder = translations[lang].ai_ph;
+            }
+            if (aiGreetingText && translations[lang].ai_greeting) {
+                aiGreetingText.textContent = translations[lang].ai_greeting;
+            }
+            if (aiInitialTime && translations[lang].ai_time_now) {
+                aiInitialTime.textContent = translations[lang].ai_time_now;
+            }
+            if (aiQuickPrompts && translations[lang].ai_chips) {
+                aiQuickPrompts.innerHTML = '';
+                translations[lang].ai_chips.forEach(chip => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'ai-chip';
+                    btn.textContent = chip.text;
+                    btn.setAttribute('data-prompt', chip.prompt);
+                    btn.addEventListener('click', () => {
+                        if (typeof sendAiMessage === 'function') {
+                            sendAiMessage(chip.prompt);
+                        }
+                    });
+                    aiQuickPrompts.appendChild(btn);
+                });
+            }
+        }
     }
 
     if (langBtn && langDropdown) {
@@ -516,6 +584,208 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnContent;
+            }
+        });
+    }
+
+    /* --------------------------------------------------------------------------
+       9. 🤖 AI CHATBOT INTEGRATSIYASI (OpenAI, Gemini & Smart Fallback)
+       -------------------------------------------------------------------------- */
+    const aiChatContainer = document.getElementById('aiChatContainer');
+    const aiChatToggleBtn = document.getElementById('aiChatToggleBtn');
+    const aiCloseChatBtn = document.getElementById('aiCloseChatBtn');
+    const aiClearChatBtn = document.getElementById('aiClearChatBtn');
+    const aiChatMessages = document.getElementById('aiChatMessages');
+    const aiChatForm = document.getElementById('aiChatForm');
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiSendBtn = document.getElementById('aiSendBtn');
+    const aiTypingIndicator = document.getElementById('aiTypingIndicator');
+
+    // Chatni ochish/yopish (Toggle)
+    if (aiChatToggleBtn && aiChatContainer) {
+        aiChatToggleBtn.addEventListener('click', () => {
+            const isActive = aiChatContainer.classList.toggle('active');
+            if (isActive && aiChatInput) {
+                setTimeout(() => aiChatInput.focus(), 250);
+                scrollAiMessagesBottom();
+            }
+        });
+    }
+
+    if (aiCloseChatBtn && aiChatContainer) {
+        aiCloseChatBtn.addEventListener('click', () => {
+            aiChatContainer.classList.remove('active');
+        });
+    }
+
+    // Xabarlar tarixini tozalash
+    if (aiClearChatBtn && aiChatMessages) {
+        aiClearChatBtn.addEventListener('click', () => {
+            const t = translations[currentLanguage] || translations.uz;
+            aiChatMessages.innerHTML = `
+                <div class="ai-message ai-message-bot">
+                    <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="ai-msg-bubble">
+                        <p class="ai-greeting-text">${t.ai_greeting}</p>
+                        <span class="ai-msg-time">${t.ai_time_now}</span>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function scrollAiMessagesBottom() {
+        if (aiChatMessages) {
+            aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+        }
+    }
+
+    function appendMessageBubble(text, sender = 'user') {
+        if (!aiChatMessages) return;
+
+        const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `ai-message ai-message-${sender}`;
+
+        if (sender === 'bot') {
+            msgDiv.innerHTML = `
+                <div class="ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="ai-msg-bubble">
+                    <p>${escapeHtml(text)}</p>
+                    <span class="ai-msg-time">${timeStr}</span>
+                </div>
+            `;
+        } else {
+            msgDiv.innerHTML = `
+                <div class="ai-msg-bubble">
+                    <p>${escapeHtml(text)}</p>
+                    <span class="ai-msg-time">${timeStr}</span>
+                </div>
+            `;
+        }
+
+        aiChatMessages.appendChild(msgDiv);
+        scrollAiMessagesBottom();
+    }
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // Mahalliy kompyuterda (file://) yoki backend ulanmaganda ishlaydigan aqlli AI bilimi
+    function getFallbackAiReply(question, lang = 'uz') {
+        const q = question.toLowerCase();
+
+        if (q.includes("salom") || q.includes("privet") || q.includes("hello") || q.includes("hi") || q.includes("qalaysiz") || q.includes("assalom")) {
+            return lang === 'ru'
+                ? "Привет! Я персональный ИИ-ассистент Асилбека. Чем могу помочь вам сегодня?"
+                : lang === 'en'
+                ? "Hello! I am Asilbek's personal AI assistant. How can I assist you today?"
+                : "Assalomu alaykum! Men Asilbekning shaxsiy AI assistentiman. Sizga qanday yordam bera olaman?";
+        }
+
+        if (q.includes("kim") || q.includes("haqida") || q.includes("кто") || q.includes("who")) {
+            return lang === 'ru'
+                ? "Асилбек Рахимов — Frontend-разработчик. Создает быстрые, современные и адаптивные сайты на HTML, CSS и JavaScript."
+                : lang === 'en'
+                ? "Asilbek Rahimov is a Frontend Developer & Web Engineer specializing in HTML, CSS, JavaScript, and responsive SaaS interfaces."
+                : "Asilbek Rahimov — Frontend Dasturchi. U zamonaviy, tezkor va barcha ekranlarga moslashuvchi veb-saytlar hamda ilovalar yaratadi.";
+        }
+
+        if (q.includes("loyiha") || q.includes("ish") || q.includes("проект") || q.includes("project")) {
+            return lang === 'ru'
+                ? "Среди проектов Асилбека: Онлайн Маркет (E-Commerce), Приложение погоды (Global Weather) и TaskFlow планировщик задач. Вы можете протестировать их в разделе 'Проекты'!"
+                : lang === 'en'
+                ? "Asilbek's portfolio includes an E-Commerce Market Platform, Global Weather App, and TaskFlow To-Do. Check them out in the 'Projects' section!"
+                : "Asilbekning asosiy loyihalari: Online Do'kon, Global Weather ob-havo ilovasi va TaskFlow rejalar tizimi. Saytdagi 'Loyihalar' bo'limida ularni sinab ko'rishingiz mumkin!";
+        }
+
+        if (q.includes("aloqa") || q.includes("bog'lanish") || q.includes("telegram") || q.includes("kontakt") || q.includes("contact") || q.includes("instagram") || q.includes("email")) {
+            return lang === 'ru'
+                ? "Вы можете связаться с Асилбеком напрямую в Telegram: @Rakh1mov_07x или написать в форме на сайте."
+                : lang === 'en'
+                ? "You can connect with Asilbek directly on Telegram: @Rakh1mov_07x, Instagram: @asilbek_rakh1mov, или через контактную форму."
+                : "Asilbek bilan to'g'ridan-to'g'ri Telegram orqali bog'lanishingiz mumkin: @Rakh1mov_07x, Instagram: @asilbek_rakh1mov yoki quyidagi forma orqali xabar qoldiring.";
+        }
+
+        if (q.includes("narx") || q.includes("buyurtma") || q.includes("qancha") || q.includes("цена") || q.includes("price") || q.includes("cost")) {
+            return lang === 'ru'
+                ? "Стоимость и сроки разработки сайта зависят от сложности проекта. Напишите Асилбеку в Telegram @Rakh1mov_07x для подробной консультации!"
+                : lang === 'en'
+                ? "Pricing and timeline depend on project scope. Reach out to Asilbek on Telegram @Rakh1mov_07x for a custom quote!"
+                : "Sayt narxi va muddati loyiha murakkabligiga bog'liq. Aniq hisob-kitob va bepul maslahat olish uchun Telegramda @Rakh1mov_07x ga yozing!";
+        }
+
+        return lang === 'ru'
+            ? `Спасибо за вопрос! По поводу "${question}" вы можете написать Асилбеку в Telegram: @Rakh1mov_07x — он с радостью ответит вам!`
+            : lang === 'en'
+            ? `Thank you for your question! Regarding "${question}", feel free to reach out directly to Asilbek on Telegram: @Rakh1mov_07x.`
+            : `Qiziqishingiz uchun rahmat! "${question}" bo'yicha Asilbekning shaxsiy Telegramiga (@Rakh1mov_07x) yozsangiz, batafsil ma'lumot beradi.`;
+    }
+
+    async function sendAiMessage(messageText) {
+        if (!messageText || messageText.trim() === '') return;
+        const text = messageText.trim();
+
+        appendMessageBubble(text, 'user');
+
+        if (aiChatInput) aiChatInput.value = '';
+        if (aiSendBtn) aiSendBtn.disabled = true;
+        if (aiTypingIndicator) {
+            aiTypingIndicator.classList.add('show');
+            scrollAiMessagesBottom();
+        }
+
+        try {
+            let botReply = "";
+
+            // 1. Vercel Serverless AI Backend (/api/chat) orqali so'rash
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        lang: currentLanguage
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.reply) {
+                        botReply = data.reply;
+                    }
+                }
+            } catch (backendError) {
+                console.log("AI Backend so'rovi oflayn/mahalliy, zaxira AI ishga tushmoqda...");
+            }
+
+            // 2. Agar backend ulanmagan bo'lsa (masalan mahalliy ochilganda), zaxira aqlli intellekt
+            if (!botReply) {
+                await new Promise(resolve => setTimeout(resolve, 600)); // Tabiiy yozish effekti
+                botReply = getFallbackAiReply(text, currentLanguage);
+            }
+
+            if (aiTypingIndicator) aiTypingIndicator.classList.remove('show');
+            appendMessageBubble(botReply, 'bot');
+
+        } catch (error) {
+            console.error("AI xatosi:", error);
+            if (aiTypingIndicator) aiTypingIndicator.classList.remove('show');
+            appendMessageBubble("Kechirasiz, xatolik yuz berdi. Iltimos qaytadan urinib ko'ring.", 'bot');
+        } finally {
+            if (aiSendBtn) aiSendBtn.disabled = false;
+            if (aiChatInput) aiChatInput.focus();
+        }
+    }
+
+    if (aiChatForm) {
+        aiChatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (aiChatInput && aiChatInput.value.trim() !== '') {
+                sendAiMessage(aiChatInput.value);
             }
         });
     }
